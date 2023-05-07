@@ -1,0 +1,44 @@
+/*PAGINA LOGIN*/
+.logo-consejo{
+    color: #709085;
+}
+
+@media (min-width: 1025px) {
+    .formulario-login {
+        height: 100%;
+    }
+}
+
+.formulario-login form{
+    width: 23rem;
+}
+
+.titulo-login{
+    letter-spacing: 1px;
+}
+
+.imagen-login{
+    object-fit: cover;
+    object-position: left;
+}
+
+.bg-image-vertical {
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+}
+/*PAGINA PRINCIPAL*/
+@font-face {
+    font-family: 'centuryB';
+    src: url('/font/GOTHICB.TTF') format('truetype');
+}
+.usuario{
+font-family: centuryB;
+color: dimgray;
+}
+.titulo{
+font-family: centuryB;
+font-size: 14;
+}
