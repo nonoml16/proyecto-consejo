@@ -27,12 +27,16 @@ public class InitData {
 				.username("user")
 				//.password("1234")
 				.password(passwordEncoder.encode("1234"))
+				.nombre("Manuel")
+				.apellidos("Lopez Fernandez")
 				.build();
 		
 		Usuario admin = Usuario.builder()
 				.admin(true)
 				.username("admin")
 				.password(passwordEncoder.encode("admin"))
+				.nombre("Francisco")
+				.apellidos("Vélez")
 				.build();
 		
 		repo.saveAll(List.of(usuario, admin));
