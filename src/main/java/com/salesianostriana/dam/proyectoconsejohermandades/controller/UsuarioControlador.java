@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Usuario;
 
 @Controller
-@RequestMapping("/user")
 public class UsuarioControlador {
 
 	@GetMapping("/")
@@ -20,7 +19,7 @@ public class UsuarioControlador {
         Usuario usuario = (Usuario) auth.getPrincipal();
         model.addAttribute("nombre", usuario.getNombre());
         model.addAttribute("apellidos", usuario.getApellidos());
-        return "header";
+        return "index";
     }
 	
 	@GetMapping("/me")
