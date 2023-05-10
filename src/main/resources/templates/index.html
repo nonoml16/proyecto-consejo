@@ -7,36 +7,7 @@
 </head>
 <body>
 	<form th:action="@{/logout}" method="POST" id="logoutForm"></form>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand align-items-sm-center" href="javascript:void(0)">
-                <img
-                src="../static/img/logo_consejo.png" 
-                th:attr="src=@{/img/logo_consejo.png},title=#{logo},alt=#{logo}"
-                height="62"
-                alt="MDB Logo"
-                loading="lazy"
-                style="margin-top: -1px;"
-                />
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto">
-                    
-                </ul>
-                <div class="d-flex align-items-center">
-                    <p class="usuario text-end pe-3 mt-3">
-						<span th:text="${nombre} + ' ' + ${apellidos}">Nombre Apellido1 Apellido2</span><br>00000000A
-                    </p>
-                    <a href="javascript:document.getElementById('logoutForm').submit()" type="button align-items-sm-center" class="btn btn-secondary btn-lg me-3 ">
-                        Salir
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <header th:replace="~{fragmentos/header::header}"></header>
     <div class="container">
         <main class="row container align-content-between">
             <div class="col-4">
