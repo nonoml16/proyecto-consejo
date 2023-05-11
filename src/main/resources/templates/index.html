@@ -17,7 +17,7 @@
                         <a class="nav-link" href="user/form-localidad.html" th:href="@{/localidad/solicitar}">Solicitar localidad</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="pill" href="#">Mis localidades</a>
+                        <a class="nav-link" href="user/list-localidad.html" th:href="@{/localidad/misLocalidades}">Mis localidades</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="pill" href="#">Editar perfil</a>
@@ -89,13 +89,12 @@
                                 }
                             });
                         </script>
-                    </form> 
+                    </form>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                        Solicitar localidad
+                    </button>
                 </div>   
             </div>
-                    
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                Solicitar localidad
-            </button>
         </main>
     </div>
     <footer th:replace="~{fragmentos/pie::pie}"></footer>
