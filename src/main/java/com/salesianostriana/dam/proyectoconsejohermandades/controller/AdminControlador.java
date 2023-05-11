@@ -19,7 +19,7 @@ public class AdminControlador {
         Usuario usuario = (Usuario) auth.getPrincipal();
         model.addAttribute("nombre", usuario.getNombre());
         model.addAttribute("apellidos", usuario.getApellidos());
-		return "index";
+		return "admin";
 	}
 
 }

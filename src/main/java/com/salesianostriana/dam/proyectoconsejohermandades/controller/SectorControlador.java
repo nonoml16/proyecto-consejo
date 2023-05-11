@@ -16,7 +16,7 @@ import com.salesianostriana.dam.proyectoconsejohermandades.service.LocalidadServ
 import com.salesianostriana.dam.proyectoconsejohermandades.service.SectorService;
 
 @Controller
-@RequestMapping("/sector")
+@RequestMapping("/admin/sector")
 public class SectorControlador {
 
 	@Autowired
