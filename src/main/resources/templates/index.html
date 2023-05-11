@@ -20,7 +20,7 @@
                         <a class="nav-link" data-bs-toggle="pill" href="#localidades">Localidades</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="pill" href="#sectores">Sectores</a>
+                        <a class="nav-link"  href="sector/sector.html" th:href="@{/sector/}">Sectores</a>
                     </li>
                 </ul>
             </div>
@@ -108,29 +108,7 @@
                     
                     
                 </div>
-                <div id="sectores" class="container tab-pane fade">
-                    <table class="table">
-                        <thead>
-						<tr>
-							<th>ID</th>
-							<th>Localizacion</th>
-							<th>Precio</th>
-						</tr>
-					</thead>
-                    <tbody>
-                        <tr th:each="sector : ${sectores}">
-							<td th:text="${sector.id}"></td>
-							<td th:text="${sector.localizacion}"></td>
-                            <td th:text="${#numbers.formatCurrency(sector.precio)}"></td>
-							<!--<td class="operaciones"><a href="#"
-								th:href="@{/admin/categoria/editar/{id}(id=${sector.id})}"
-								class="btn btn-primary">Editar</a>
-								<button type="button" class="btn btn-danger" data-toggle="modal"
-									data-target="#delete-modal" th:data-id="${sector.id}">Borrar</button></td>-->
-						</tr>
-                    </tbody>
-                    </table>
-                </div>
+                
             </div>
         </main>
     </div>

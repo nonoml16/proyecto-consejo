@@ -16,25 +16,25 @@ import com.salesianostriana.dam.proyectoconsejohermandades.service.LocalidadServ
 import com.salesianostriana.dam.proyectoconsejohermandades.service.SectorService;
 
 @Controller
-@RequestMapping("/admin/sector")
+@RequestMapping("/sector")
 public class SectorControlador {
 
 	@Autowired
 	private SectorService sectorService;
 	
-	@Autowired
-	private LocalidadService localidadService;
+	/*@Autowired
+	private LocalidadService localidadService;*/
 	
 	@GetMapping("/")
 	public String index (Model model) {
 		model.addAttribute("sectores", sectorService.findAll());
-		return "index";
+		return "sector/sector";
 	}
 	
-	@GetMapping("/nueva")
+	@GetMapping("/nuevo")
 	public String nuevaCategoria(Model model) {
 		model.addAttribute("sector", new Sector());
-		return "admin/form-sector";
+		return "sector/form-sector";
 	}
 	
 	@PostMapping("/nueva/submit")
@@ -52,9 +52,9 @@ public class SectorControlador {
 		
 		if (sector != null) {
 			model.addAttribute("sector", sector);
-			return "admin/form-sector";
+			return "sector/form-sector";
 		} else {
-			return "redirect:/admin/sector/";
+			return "redirect:/sector/sector/";
 		}
 		
 	}
