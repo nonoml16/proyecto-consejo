@@ -32,7 +32,7 @@ public class Localidad {
 	private Propietario propietario;
 	
 	@Enumerated(EnumType.STRING)
-	private TipoLocalidad tipo;
+	private TipoLocalidad tipoLocalidad;
 	
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_localidad_sector"))
