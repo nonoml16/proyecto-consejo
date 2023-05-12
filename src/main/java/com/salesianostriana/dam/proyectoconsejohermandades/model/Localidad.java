@@ -38,4 +38,5 @@ public class Localidad {
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_localidad_sector"))
 	private Sector sector;
 	
+	
 }
