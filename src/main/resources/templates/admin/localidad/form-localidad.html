@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragmentos/head :: head" >
+    <meta charset="UTF-8">
+    <title>Portada</title>
+    
+</head>
+<body>
+    <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
+    <header th:replace="~{fragmentos/header::header}"></header>
+    <div class="container">
+        <main class="row container align-content-between">
+            <div class="col-4">
+                <p class="titulo mt-4">SERVICIOS DISPONIBLES</p>
+                <ul class="nav flex-column nav-pills nav-justified" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" href="user/form-localidad.html" th:href="@{/localidad/solicitar}">Solicitar localidad</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user/list-localidad.html" th:href="@{/localidad/misLocalidades}">Mis localidades</a>
+                    </li>
+					<li class="nav-item">
+                        <a class="nav-link" href="admin/propietario/list-sector.html" th:href="@{/admin/propietario/}">Propietarios</a>
+                    </li>
+					<li class="nav-item">
+                        <a class="nav-link active" href="admin/localidad/list-localidad.html" th:href="@{/admin/localidad/}">Localidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  href="admin/sector/list-sector.html" th:href="@{/admin/sector/}">Sectores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#">Editar perfil</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="tab-content col-8">
+                <div id="home" class="container tab-pane active"><br>
+                    <h3>SOLICITAR LOCALIDAD</h3>
+                    
+                    <form th:action="@{/admin/localidad/nueva/submit}" th:object="${localidad}" action="#" method="post">
+                        <div class="mb-2 mt-3">
+                            <label for="nombre" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" th:field="*{propietario.nombre}" id="nombre" placeholder="Nombre" name="nombre">
+                        </div>
+                        <div class="mb-3">
+                            <label for="apellidos" class="form-label">Apellidos:</label>
+                            <input type="text" class="form-control" th:field="*{propietario.apellidos}" id="apellidos" placeholder="Apellidos" name="apellidos">
+                        </div>
+                        <div class="mb-3">
+                            <label for="dni" class="form-label">DNI:</label>
+                            <input type="text" class="form-control" th:field="*{propietario.dni}" id="dni" placeholder="Introduzca su DNI" name="dni">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipoLocalidad">Tipo de localidad:</label>
+                            <select id="tipoLocalidad" th:field="*{tipoLocalidad}">
+                                <option th:each="tipo : ${tiposLocalidad}" th:value="${tipo}" th:text="${tipo}"></option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="number" th:field="*{fila}" class="form-control" placeholder="Fila" name="fila">
+                            </div>
+                            <div class="col">
+                                <input type="number" th:field="*{numLocalidad}" class="form-control" placeholder="Numero de localidad" name="asiento">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sector">Sector</label> <select
+                                th:field="*{sector}" class="form-control">
+                                <option value="-1">---</option>
+                                <option th:each="sector : ${sectores}"
+                                    th:value="${sector.id}" th:text="${sector.localizacion}">Sector</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Solicitar localidad
+                        </button>
+                        <!--
+                        <div class="mb-3">
+                            <label for="sector" class="form-label">Sector:</label>
+                            <select id="sector" class="form-select">
+                                <option value="1">Campana</option>
+                                <option value="2">Sierpes</option>
+                                <option value="3">Plaza San Francisco</option>
+                                <option value="4">Avenida</option>
+                                <option value="5">Catedral</option>
+                                <option value="6">Plaza Virgen de los Reyes</option>
+                            </select>
+                        </div>
+                        <script>
+                            let tipo = document.getElementById("tipo");
+                            let sector = document.getElementById("sector");
+
+                            tipo.addEventListener("change", function(){
+                                if (tipo.value === "p"){
+                                    sector.value = "3";
+                                    sector.disabled = true;
+                                }else{
+                                    sector.value = "1";
+                                    sector.disabled = false;
+                                }
+                            });
+
+                            sector.addEventListener("change", function(){
+                                if(sector.value === "3"){
+                                    tipo.value = "p";
+                                    tipo.disabled = true;
+                                }else{
+                                    tipo.value = "s";
+                                    tipo.disabled = false;
+                                }
+                            });
+                        </script>-->
+                    </form> 
+                </div>   
+            </div>
+                    
+            
+        </main>
+    </div>
+    <footer th:replace="~{fragmentos/pie::pie}"></footer>
+</body>
+</html>

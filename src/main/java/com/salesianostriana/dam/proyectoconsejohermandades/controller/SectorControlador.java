@@ -51,9 +51,10 @@ public class SectorControlador {
 	@GetMapping("/editar/{id}")
 	public String editarSector(@PathVariable("id") Long id, Model model) {
 		
-		
-			model.addAttribute("sector", sectorService.findById(id));
-			return "admin/sector/form-sector";
+		Optional<Sector> sectorOpt = sectorService.findById(id);
+		if(sectorOpt.isPresent())
+			model.addAttribute("sector", sectorOpt.get());
+		return "admin/sector/form-sector";
 		
 	}
 	
@@ -62,17 +63,9 @@ public class SectorControlador {
 		
 		Optional<Sector> sector = sectorService.findById(id);
 		
-		if (sector.isPresent()) {
-			
-			if (localidadService.numeroLocalidadesSector(sector.get()) == 0) {
-				sectorService.deleteById(id);				
-			} else {
-				
-			//Se ha agregado el parámetro error con valor true a la ruta	
-				return "redirect:/admin/sector/?error=true";
-			}
-			
-		} 
+		if (sector.isPresent())
+			if (localidadService.numeroLocalidadesSector(sector.get()) == 0)
+				sectorService.deleteById(id);
 
 		return "redirect:/admin/sector/";
 		

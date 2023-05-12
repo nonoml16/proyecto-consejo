@@ -17,30 +17,39 @@
                         <a class="nav-link" href="user/form-localidad.html" th:href="@{/localidad/solicitar}">Solicitar localidad</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="form-localidad.html" th:href="@{/localidad/misLocalidades}">Mis localidades</a>
+                        <a class="nav-link" href="user/list-localidad.html" th:href="@{/localidad/misLocalidades}">Mis localidades</a>
+                    </li>
+					<li class="nav-item">
+                        <a class="nav-link" href="admin/propietario/list-sector.html" th:href="@{/admin/propietario/}">Propietarios</a>
+                    </li>
+					<li class="nav-item">
+                        <a class="nav-link active" href="admin/localidad/list-localidad.html" th:href="@{/admin/localidad/}">Localidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  href="admin/sector/list-sector.html" th:href="@{/admin/sector/}">Sectores</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="pill" href="#">Editar perfil</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-none" data-bs-toggle="pill" href="#localidades">Localidades</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-none"  href="admin/sector/sector.html" th:href="@{/admin/sector/}">Sectores</a>
-                    </li>
+                    
                 </ul>
             </div>
             <div class="tab-content col-8">
+                <div class="pull-right">
+					<a href="form-localidad.html" th:href="@{/admin/localidad/nueva}" class="btn btn-primary">Nueva
+						localidad</a>
+
+				</div>
                 <div class="container tab-pane active">
                     <table class="table">
                         <thead>
 						<tr>
-                            <th class="d-none">ID</th>
-                            <th class="d-none">ID prpietario</th>
+                            <th>ID</th>
+                            <th class="d-none">ID propietario</th>
 							<th>Nombre</th>
                             <th>Apellidos</th>
 							<th>Sector</th>
-                            <!--<th>Tipo de localidad</th>-->
+                            <th>Tipo de localidad</th>
                             <th>Fila</th>
                             <th>Número de localidad</th>
 							<th>Precio</th>
@@ -48,15 +57,19 @@
 					</thead>
                     <tbody>
                         <tr th:each="localidad : ${localidades}">
-                            <td class="d-none" th:text="${localidad.id}"></td>></td>
-                            <td class="d-none" th:text="${localidad.propietario.id}"></td>></td>
-							<td th:text="${localidad.propietario.nombre}"></td>
+                            <td th:text="${localidad.id}"></td>
+							<td class="d-none" th:text="${localidad.propietario.id}"></td>
+                            <td th:text="${localidad.propietario.nombre}"></td>
 							<td th:text="${localidad.propietario.apellidos}"></td>
                             <td th:text="${localidad.sector.localizacion}"></td>
-                            <!--<td th:text="${sector.localizacion}"></td>-->
+                            <!--<td th:text="${localidad.sector.tipoLocalidad}"></td>-->
                             <td th:text="${localidad.fila}"></td>
                             <td th:text="${localidad.numLocalidad}"></td>
                             <td th:text="${#numbers.formatCurrency(localidad.sector.precio)}"></td>
+							<td class="operaciones"><a href="#"
+								th:href="@{/admin/localidad/editar/{id}(id=${localidad.id})}"
+								class="btn btn-primary">Editar</a>
+								<a class="btn btn-danger" th:href="@{/admin/localidad/borrar/{id}(id=${localidad.id})}">Borrar</a></td>
 						</tr>
                     </tbody>
                     </table>

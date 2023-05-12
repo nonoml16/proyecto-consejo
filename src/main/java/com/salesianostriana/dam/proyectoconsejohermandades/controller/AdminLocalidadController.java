@@ -1,10 +1,13 @@
 package com.salesianostriana.dam.proyectoconsejohermandades.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,14 +17,14 @@ import com.salesianostriana.dam.proyectoconsejohermandades.service.LocalidadServ
 import com.salesianostriana.dam.proyectoconsejohermandades.service.SectorService;
 
 @Controller
-@RequestMapping("/localidad")
-public class LocalidadControlador {
-	
-	@Autowired
-	private SectorService sectorService;
+@RequestMapping("/admin/localidad")
+public class AdminLocalidadController {
 	
 	@Autowired
 	private LocalidadService localidadService;
+	
+	@Autowired
+	private SectorService sectorService;
 
 	@ModelAttribute("tiposLocalidad")
     public TipoLocalidad[] getTiposLocalidad() {
@@ -31,26 +34,39 @@ public class LocalidadControlador {
 	@GetMapping("/")
 	public String index (Model model) {
 		model.addAttribute("localidades", localidadService.findAll());
-		return "user/list-localidad";
+		return "admin/localidad/list-localidad";
 	}
 	
-	@GetMapping("/solicitar")
-	public String solicitar (Model model) {
+	@GetMapping("/nueva")
+	public String nuevaLocalidad(Model model) {
 		model.addAttribute("localidad", new Localidad());
 		model.addAttribute("sectores", sectorService.findAll());
-		return "user/form-localidad";
+		return "admin/localidad/form-localidad";
 	}
 	
-	@PostMapping("/solicitar/submit")
-    public String altaLocalidadSubmit(Localidad localidad, Model model) {
-        localidadService.save(localidad);
-        return "redirect:/localidad/solicitar";
-    }
-	
-	@GetMapping("/misLocalidades")
-	public String listLocalidades(Model model) {
-		model.addAttribute("localidades", localidadService.findAll());
-		return "user/list-localidad";
+	@PostMapping("/nueva/submit")
+	public String submitNuevaLocalidad(@ModelAttribute("localidad") Localidad localidad, Model model) {
+		
+		localidadService.save(localidad);
+		
+		return "redirect:/admin/localidad/";
 	}
 	
+	@GetMapping("/editar/{id}")
+	public String editarLocalidad(@PathVariable("id") Long id, Model model) {
+		
+		Optional<Localidad> localidadOpt = localidadService.findById(id);
+		if(localidadOpt.isPresent())
+			model.addAttribute("localidad", localidadOpt.get());
+		return "admin/localidad/form-localidad";
+		
+	}
+	
+	@GetMapping("/borrar/{id}")
+	public String borrarLocalidad(@PathVariable("id") Long id, Model model) {
+		
+		localidadService.deleteById(id);
+		return "redirect:/admin/localidad/";
+		
+	}
 }

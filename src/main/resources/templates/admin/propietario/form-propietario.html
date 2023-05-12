@@ -6,9 +6,9 @@
     
 </head>
 <body>
-	<form th:action="@{/logout}" method="POST" id="logoutForm"></form>
+    <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
     <header th:replace="~{fragmentos/header::header}"></header>
-	<div class="container">
+    <div class="container">
         <main class="row container align-content-between">
             <div class="col-4">
                 <p class="titulo mt-4">SERVICIOS DISPONIBLES</p>
@@ -20,7 +20,7 @@
                         <a class="nav-link" href="user/list-localidad.html" th:href="@{/localidad/misLocalidades}">Mis localidades</a>
                     </li>
 					<li class="nav-item">
-                        <a class="nav-link" href="admin/propietario/list-sector.html" th:href="@{/admin/propietario/}">Propietarios</a>
+                        <a class="nav-link active" href="admin/propietario/list-sector.html" th:href="@{/admin/propietario/}">Propietarios</a>
                     </li>
 					<li class="nav-item">
                         <a class="nav-link" href="admin/localidad/list-localidad.html" th:href="@{/admin/localidad/}">Localidades</a>
@@ -34,7 +34,32 @@
                     
                 </ul>
             </div>
+            <div class="tab-content col-8">
+                
+                <form method="post" action="#" th:action="@{/admin/propietario/nuevo/submit}" th:object="${propietario}">
+					<h1><span th:text="${propietario.dni} ? 'Editar' : 'Nuevo'"></span> sector </h1>
+                    <input type="hidden" th:field="*{id}" id="id" />
+					<div class="form-group">
+						<label for="localizacion">DNI</label><input type="text"
+							class="form-control" id="dni" placeholder="DNI"
+							required="required" th:field="*{dni}">
+					</div>
+					<div class="form-group">
+						<label for="localizacion">Nombre</label><input type="text"
+							class="form-control" id="nombre" placeholder="Nombre"
+							required="required" th:field="*{nombre}">
+					</div>
+                    <div class="form-group">
+						<label for="localizacion">Apellidos</label><input type="text"
+							class="form-control" id="apellidos" placeholder="Apellidos"
+							required="required" th:field="*{apellidos}">
+					</div>
+					
+					<button type="submit" class="btn btn-primary">Enviar</button>
+				</form>
+            </div>
         </main>
     </div>
+    <footer th:replace="~{fragmentos/pie::pie}"></footer>
 </body>
 </html>
