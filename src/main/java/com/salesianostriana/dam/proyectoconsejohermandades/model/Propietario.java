@@ -3,8 +3,10 @@ package com.salesianostriana.dam.proyectoconsejohermandades.model;
 import java.util.List;
 import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -23,11 +25,15 @@ import lombok.ToString;
 public class Propietario {
 
 	@Id
+	@GeneratedValue
+	private Long id;
+	
 	private String dni;
 	
 	private String nombre, apellidos;
 	
-	@OneToMany(mappedBy = "propietario", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "propietario", fetch = FetchType.EAGER,
+			cascade = CascadeType.ALL, orphanRemoval = true)
 	@Builder.Default
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude

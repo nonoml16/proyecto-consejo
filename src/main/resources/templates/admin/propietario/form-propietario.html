@@ -38,6 +38,7 @@
                 
                 <form method="post" action="#" th:action="@{/admin/propietario/nuevo/submit}" th:object="${propietario}">
 					<h1><span th:text="${propietario.dni} ? 'Editar' : 'Nuevo'"></span> sector </h1>
+                    <input type="hidden" th:field="*{id}" id="id" />
 					<div class="form-group">
 						<label for="localizacion">DNI</label><input type="text"
 							class="form-control" id="dni" placeholder="DNI"

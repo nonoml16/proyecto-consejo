@@ -6,6 +6,7 @@ import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
 import com.salesianostriana.dam.proyectoconsejohermandades.repositories.PropietarioRepositorio;
 
 @Service
-public class PropietarioService extends BaseServiceImpl<Propietario, String, PropietarioRepositorio>{
+public class PropietarioService extends BaseServiceImpl<Propietario, Long, PropietarioRepositorio>{
 
+	
 }

@@ -51,9 +51,10 @@ public class SectorControlador {
 	@GetMapping("/editar/{id}")
 	public String editarSector(@PathVariable("id") Long id, Model model) {
 		
-		
-			model.addAttribute("sector", sectorService.findById(id));
-			return "admin/sector/form-sector";
+		Optional<Sector> sectorOpt = sectorService.findById(id);
+		if(sectorOpt.isPresent())
+			model.addAttribute("sector", sectorOpt.get());
+		return "admin/sector/form-sector";
 		
 	}
 	

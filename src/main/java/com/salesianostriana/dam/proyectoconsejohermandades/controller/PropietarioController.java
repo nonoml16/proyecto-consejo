@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.proyectoconsejohermandades.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
+import com.salesianostriana.dam.proyectoconsejohermandades.service.LocalidadService;
 import com.salesianostriana.dam.proyectoconsejohermandades.service.PropietarioService;
 
 @Controller
@@ -18,6 +21,9 @@ public class PropietarioController {
 
 	@Autowired
 	private PropietarioService propietarioService;
+	
+	@Autowired
+	private LocalidadService localidadService;
 	
 	@GetMapping("/")
 	public String index (Model model) {
@@ -39,12 +45,26 @@ public class PropietarioController {
 		return "redirect:/admin/propietario/";
 	}
 	
-	@GetMapping("/editar/{dni}")
-	public String editarSector(@PathVariable("dni") String dni, Model model) {
+	@GetMapping("/editar/{id}")
+	public String editarPropietario(@PathVariable("id") Long id, Model model) {
 		
-		
-		model.addAttribute("propietario", propietarioService.findById(dni));
-			return "admin/sector/form-propietario";
+		Optional<Propietario> propietarioOpt = propietarioService.findById(id);
+		if(propietarioOpt.isPresent())
+			model.addAttribute("propietario", propietarioOpt.get());
+		return "admin/propietario/form-propietario";
 		
 	}
+	
+	@GetMapping("/borrar/{id}")
+	public String borrarPropietario(@PathVariable("id") long id,  Model model) {
+		Optional<Propietario> propietarioOpt = propietarioService.findById(id);
+		if(propietarioOpt.isPresent()) {
+			if(localidadService.numeroLocalidadesPropietario(propietarioOpt.get()) == 0)
+				localidadService.deleteById(id);
+			
+		}
+		
+		return "redirect:/admin/propietario/";
+	}
+	
 }

@@ -44,6 +44,7 @@
                     <table class="table">
                         <thead>
 						<tr>
+                            <th>ID</th>
 							<th>DNI</th>
 							<th>Nombre</th>
 							<th>Apellidos</th>
@@ -53,14 +54,14 @@
 					</thead>
                     <tbody>
                         <tr th:each="propietario : ${propietarios}">
+                            <td th:text="${propietario.id}"></td>
 							<td th:text="${propietario.dni}"></td>
 							<td th:text="${propietario.nombre}"></td>
                             <td th:text="${propietario.apellidos}"></td>
 							<td class="operaciones"><a href="#"
-								th:href="@{/admin/propietario/editar/{dni}(dni=${dni})}"
+								th:href="@{/admin/propietario/editar/{id}(id=${propietario.id})}"
 								class="btn btn-primary">Editar</a>
-								<a type="button" class="btn btn-danger" data-toggle="modal"
-									data-target="#delete-modal" th:data-id="${propietario.dni}">Borrar</a></td>
+								<a class="btn btn-danger" th:href="@{/admin/propietario/borrar/{id}(id=${propietario.id})}">Borrar</a></td>
 						</tr>
                     </tbody>
                     </table>
