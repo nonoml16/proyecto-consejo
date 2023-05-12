@@ -22,25 +22,28 @@ public class SectorControlador {
 	@Autowired
 	private SectorService sectorService;
 	
+	@Autowired
+	private LocalidadService localidadService;
+	
 	/*@Autowired
 	private LocalidadService localidadService;*/
 	
 	@GetMapping("/")
 	public String index (Model model) {
 		model.addAttribute("sectores", sectorService.findAll());
-		return "sector/sector";
+		return "admin/sector/list-sector";
 	}
 	
 	@GetMapping("/nuevo")
-	public String nuevaCategoria(Model model) {
+	public String nuevoSector(Model model) {
 		model.addAttribute("sector", new Sector());
-		return "sector/form-sector";
+		return "admin/sector/form-sector";
 	}
 	
-	@PostMapping("/nueva/submit")
-	public String submitNuevaCategoria(@ModelAttribute("sector") Sector categoria, Model model) {
+	@PostMapping("/nuevo/submit")
+	public String submitNuevoSector(@ModelAttribute("sector") Sector sector, Model model) {
 		
-		sectorService.save(categoria);
+		sectorService.save(sector);
 		
 		return "redirect:/admin/sector/";
 	}
@@ -48,36 +51,31 @@ public class SectorControlador {
 	@GetMapping("/editar/{id}")
 	public String editarSector(@PathVariable("id") Long id, Model model) {
 		
-		Optional<Sector> sector = sectorService.findById(id);
 		
-		if (sector != null) {
-			model.addAttribute("sector", sector);
-			return "sector/form-sector";
-		} else {
-			return "redirect:/sector/sector/";
-		}
+			model.addAttribute("sector", sectorService.findById(id));
+			return "admin/sector/form-sector";
 		
 	}
 	
-	/*@GetMapping("/borrar/{id}")
-	public String borrarCategoria(@PathVariable("id") Long id, Model model) {
+	@GetMapping("/borrar/{id}")
+	public String borrarSector(@PathVariable("id") Long id, Model model) {
 		
-		Sector sector = sectorService.findById(id);
+		Optional<Sector> sector = sectorService.findById(id);
 		
-		if (sector != null) {
+		if (sector.isPresent()) {
 			
-			if (localidadService.numeroProductosCategoria(sector) == 0) {
-				sectorService.delete(sector);				
+			if (localidadService.numeroLocalidadesSector(sector.get()) == 0) {
+				sectorService.deleteById(id);				
 			} else {
 				
 			//Se ha agregado el parámetro error con valor true a la ruta	
-				return "redirect:/admin/categoria/?error=true";
+				return "redirect:/admin/sector/?error=true";
 			}
 			
 		} 
 
-		return "redirect:/admin/categoria/";
+		return "redirect:/admin/sector/";
 		
 		
-	}*/
+	}
 }

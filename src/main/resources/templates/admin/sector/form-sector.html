@@ -26,12 +26,12 @@
             </div>
             <div class="tab-content col-8">
                 
-                <form method="post" action="#" th:action="@{/admin/categoria/nueva/submit}" th:object="${categoria}">
-					<h1><span th:text="${categoria.id} ? 'Editar' : 'Nuevo'"></span> sector </h1>
+                <form method="post" action="#" th:action="@{/admin/sector/nuevo/submit}" th:object="${sector}">
+					<h1><span th:text="${sector.id} ? 'Editar' : 'Nuevo'"></span> sector </h1>
 
 					<input type="hidden" th:field="*{id}" id="id" />
 					<div class="form-group">
-						<label for="localizacion">Localización</label> <input type="text"
+						<label for="localizacion">Localización</label><input type="text"
 							class="form-control" id="localizacion" placeholder="Localización"
 							required="required" th:field="*{localizacion}">
 					</div>
@@ -42,7 +42,7 @@
 					</div>
 
 					
-					<button type="submit" class="btn btn-default">Enviar</button>
+					<button type="submit" class="btn btn-primary">Enviar</button>
 				</form>
             </div>
         </main>

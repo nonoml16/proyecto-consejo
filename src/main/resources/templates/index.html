@@ -26,74 +26,9 @@
                         <a class="nav-link d-none" data-bs-toggle="pill" href="#localidades">Localidades</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-none"  href="admin/sector/sector.html" th:href="@{/admin/sector/}">Sectores</a>
+                        <a class="nav-link d-none"  href="admin/sector/list-sector.html" th:href="@{/admin/sector/}">Sectores</a>
                     </li>
                 </ul>
-            </div>
-            <div class="tab-content col-8">
-                <div id="home" class="container tab-pane fade"><br>
-                    <h3>SOLICITAR LOCALIDAD</h3>
-                    
-                    <form action="/action_page.php">
-                        <div class="mb-2 mt-3">
-                            <label for="nombre" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
-                        </div>
-                        <div class="mb-3">
-                            <label for="apellidos" class="form-label">Apellidos:</label>
-                            <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" name="apellidos">
-                        </div>
-                        <div class="mb-3">
-                            <label for="dni" class="form-label">DNI:</label>
-                            <input type="text" class="form-control" id="dni" placeholder="Introduzca su DNI" name="dni">
-                        </div>
-                        <div class="mb-3">
-                            <label for="tipo" class="form-label">Tipo de localidad:</label>
-                            <select id="tipo" class="form-select">
-                                <option value="s">Silla</option>
-                                <option value="p">Palco</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="sector" class="form-label">Sector:</label>
-                            <select id="sector" class="form-select">
-                                <option value="1">Campana</option>
-                                <option value="2">Sierpes</option>
-                                <option value="3">Plaza San Francisco</option>
-                                <option value="4">Avenida</option>
-                                <option value="5">Catedral</option>
-                                <option value="6">Plaza Virgen de los Reyes</option>
-                            </select>
-                        </div>
-                        <script>
-                            let tipo = document.getElementById("tipo");
-                            let sector = document.getElementById("sector");
-
-                            tipo.addEventListener("change", function(){
-                                if (tipo.value === "p"){
-                                    sector.value = "3";
-                                    sector.disabled = true;
-                                }else{
-                                    sector.value = "1";
-                                    sector.disabled = false;
-                                }
-                            });
-
-                            sector.addEventListener("change", function(){
-                                if(sector.value === "3"){
-                                    tipo.value = "p";
-                                    tipo.disabled = true;
-                                }else{
-                                    tipo.value = "s";
-                                    tipo.disabled = false;
-                                }
-                            });
-                        </script>
-                    </form>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                        Solicitar localidad
-                    </button>
-                </div>   
             </div>
         </main>
     </div>

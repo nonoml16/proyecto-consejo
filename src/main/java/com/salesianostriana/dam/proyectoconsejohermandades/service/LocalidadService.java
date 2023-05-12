@@ -9,7 +9,7 @@ import com.salesianostriana.dam.proyectoconsejohermandades.repositories.Localida
 @Service
 public class LocalidadService extends BaseServiceImpl<Localidad, Long, LocalidadRepositorio>{
 
-	/*public int numeroLocalidadesSector(Sector sector) {
-		return find
-	}*/
+	public int numeroLocalidadesSector(Sector sector) {
+		return repository.findNumLocalidadesBySector(sector);
+	}
 }

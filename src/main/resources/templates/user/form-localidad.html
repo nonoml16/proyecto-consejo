@@ -34,7 +34,7 @@
                 <div id="home" class="container tab-pane active"><br>
                     <h3>SOLICITAR LOCALIDAD</h3>
                     
-                    <form th:action="@{/user/localidad/solicitar/submit}" th:object="${localidad}" action="#" method="post">
+                    <form th:action="@{/localidad/solicitar/submit}" th:object="${localidad}" action="#" method="post">
                         <div class="mb-2 mt-3">
                             <label for="nombre" class="form-label">Nombre:</label>
                             <input type="text" class="form-control" th:field="*{propietario.nombre}" id="nombre" placeholder="Nombre" name="nombre">
