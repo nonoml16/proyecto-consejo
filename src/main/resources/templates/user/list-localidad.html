@@ -35,10 +35,12 @@
                     <table class="table">
                         <thead>
 						<tr>
+                            <th class="d-none">ID</th>
+                            <th class="d-none">ID prpietario</th>
 							<th>Nombre</th>
                             <th>Apellidos</th>
 							<th>Sector</th>
-                            <th>Tipo de localidad</th>
+                            <!--<th>Tipo de localidad</th>-->
                             <th>Fila</th>
                             <th>Número de localidad</th>
 							<th>Precio</th>
@@ -46,18 +48,15 @@
 					</thead>
                     <tbody>
                         <tr th:each="localidad : ${localidades}">
-							<td th:text="${propietario.nombre}"></td>
-							<td th:text="${propietario.apellidos}"></td>
-                            <td th:text="${sector.localizacion}"></td>
-                            <td th:text="${sector.localizacion}"></td>
+                            <td class="d-none" th:text="${localidad.id}"></td>></td>
+                            <td class="d-none" th:text="${localidad.propietario.id}"></td>></td>
+							<td th:text="${localidad.propietario.nombre}"></td>
+							<td th:text="${localidad.propietario.apellidos}"></td>
+                            <td th:text="${localidad.sector.localizacion}"></td>
+                            <!--<td th:text="${sector.localizacion}"></td>-->
                             <td th:text="${localidad.fila}"></td>
                             <td th:text="${localidad.numLocalidad}"></td>
-                            <td th:text="${#numbers.formatCurrency(sector.precio)}"></td>
-							<td class="operaciones"><a href="#"
-								th:href="@{/sector/editar/{id}(id=${sector.id})}"
-								class="btn btn-primary">Editar</a>
-								<button type="button" class="btn btn-danger" data-toggle="modal"
-									data-target="#delete-modal" th:data-id="${sector.id}">Borrar</button></td>
+                            <td th:text="${#numbers.formatCurrency(localidad.sector.precio)}"></td>
 						</tr>
                     </tbody>
                     </table>

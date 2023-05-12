@@ -29,8 +29,9 @@ public class LocalidadControlador {
     }
 	
 	@GetMapping("/")
-	public String indexLocalidad (Model model) {
-		return "index";
+	public String index (Model model) {
+		model.addAttribute("localidades", localidadService.findAll());
+		return "user/list-localidad";
 	}
 	
 	@GetMapping("/solicitar")

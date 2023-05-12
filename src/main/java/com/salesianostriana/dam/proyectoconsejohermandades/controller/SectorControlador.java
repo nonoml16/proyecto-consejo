@@ -63,17 +63,9 @@ public class SectorControlador {
 		
 		Optional<Sector> sector = sectorService.findById(id);
 		
-		if (sector.isPresent()) {
-			
-			if (localidadService.numeroLocalidadesSector(sector.get()) == 0) {
-				sectorService.deleteById(id);				
-			} else {
-				
-			//Se ha agregado el parámetro error con valor true a la ruta	
-				return "redirect:/admin/sector/?error=true";
-			}
-			
-		} 
+		if (sector.isPresent())
+			if (localidadService.numeroLocalidadesSector(sector.get()) == 0)
+				sectorService.deleteById(id);
 
 		return "redirect:/admin/sector/";
 		
