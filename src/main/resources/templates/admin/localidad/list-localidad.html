@@ -17,17 +17,21 @@
                         <a class="nav-link" href="user/form-localidad.html" th:href="@{/localidad/solicitar}">Solicitar localidad</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="form-localidad.html" th:href="@{/localidad/misLocalidades}">Mis localidades</a>
+                        <a class="nav-link" href="user/list-localidad.html" th:href="@{/localidad/misLocalidades}">Mis localidades</a>
+                    </li>
+					<li class="nav-item">
+                        <a class="nav-link" href="admin/propietario/list-sector.html" th:href="@{/admin/propietario/}">Propietarios</a>
+                    </li>
+					<li class="nav-item">
+                        <a class="nav-link active" href="admin/localidad/list-localidad.html" th:href="@{/admin/localidad/}">Localidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  href="admin/sector/list-sector.html" th:href="@{/admin/sector/}">Sectores</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="pill" href="#">Editar perfil</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-none" data-bs-toggle="pill" href="#localidades">Localidades</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-none"  href="admin/sector/sector.html" th:href="@{/admin/sector/}">Sectores</a>
-                    </li>
+                    
                 </ul>
             </div>
             <div class="tab-content col-8">
@@ -54,10 +58,10 @@
                             <td th:text="${localidad.numLocalidad}"></td>
                             <td th:text="${#numbers.formatCurrency(sector.precio)}"></td>
 							<td class="operaciones"><a href="#"
-								th:href="@{/sector/editar/{id}(id=${sector.id})}"
+								th:href="@{/admin/localidad/editar/{id}(id=${localidad.id})}"
 								class="btn btn-primary">Editar</a>
 								<button type="button" class="btn btn-danger" data-toggle="modal"
-									data-target="#delete-modal" th:data-id="${sector.id}">Borrar</button></td>
+									data-target="#delete-modal" th:data-id="${localidad.id}">Borrar</button></td>
 						</tr>
                     </tbody>
                     </table>
