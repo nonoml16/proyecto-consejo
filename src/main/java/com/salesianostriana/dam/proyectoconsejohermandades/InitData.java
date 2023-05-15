@@ -7,8 +7,8 @@ import javax.annotation.PostConstruct;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.salesianostriana.dam.proyectoconsejohermandades.model.Usuario;
-import com.salesianostriana.dam.proyectoconsejohermandades.repositories.UsuarioRepositorio;
+import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
+import com.salesianostriana.dam.proyectoconsejohermandades.repositories.PropietarioRepositorio;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,27 +16,29 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class InitData {
 	
-	private final UsuarioRepositorio repo;
+	private final PropietarioRepositorio repo;
 	private final PasswordEncoder passwordEncoder;
 	
 	@PostConstruct
 	public void init() {
 		
-		Usuario usuario = Usuario.builder()
-				.admin(false)
+		Propietario usuario = Propietario.builder()
+				.esConsejero(false)
 				.username("user")
 				//.password("1234")
 				.password(passwordEncoder.encode("1234"))
-				.nombre("Manuel")
-				.apellidos("Lopez Fernandez")
+				.dni("21135681S")
+				.nombre("Antonio")
+				.apellidos("Martínez López")
 				.build();
 		
-		Usuario admin = Usuario.builder()
-				.admin(true)
+		Propietario admin = Propietario.builder()
+				.esConsejero(true)
 				.username("admin")
 				.password(passwordEncoder.encode("admin"))
+				.dni("89088712Y")
 				.nombre("Francisco")
-				.apellidos("Vélez")
+				.apellidos("Vélez de Luna")
 				.build();
 		
 		repo.saveAll(List.of(usuario, admin));
