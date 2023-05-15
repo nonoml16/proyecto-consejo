@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.salesianostriana.dam.proyectoconsejohermandades.model.Usuario;
+import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
 
 @Controller
 @RequestMapping("/user")
@@ -17,7 +17,7 @@ public class UsuarioControlador {
 	@GetMapping("/me")
 	public String me() {
 
-		Usuario u = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Propietario u = (Propietario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		System.out.println(u.toString());
 
@@ -25,7 +25,7 @@ public class UsuarioControlador {
 	}
 
 	@GetMapping("/me2")
-	public String me2(@AuthenticationPrincipal Usuario u) {
+	public String me2(@AuthenticationPrincipal Propietario u) {
 
 		System.out.println(u.toString());
 
