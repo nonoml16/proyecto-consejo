@@ -17,7 +17,7 @@
                         <a class="nav-link" href="user/form-localidad.html" th:href="@{/localidad/solicitar}">Solicitar localidad</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="form-localidad.html" th:href="@{/localidad/misLocalidades}">Mis localidades</a>
+                        <a class="nav-link active" href="form-localidad.html" th:href="@{/localidad/}">Mis localidades</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="pill" href="#">Editar perfil</a>
@@ -35,25 +35,23 @@
                     <table class="table">
                         <thead>
 						<tr>
-                            <th class="d-none">ID</th>
-                            <th class="d-none">ID prpietario</th>
-							<th>Nombre</th>
+                            <th>ID</th>
+                            <th>Nombre</th>
                             <th>Apellidos</th>
-							<th>Sector</th>
-                            <!--<th>Tipo de localidad</th>-->
+                            <th>Sector</th>
+                            <th>Tipo de localidad</th>
                             <th>Fila</th>
                             <th>Número de localidad</th>
-							<th>Precio</th>
+                            <th>Precio</th>
 						</tr>
 					</thead>
                     <tbody>
                         <tr th:each="localidad : ${localidades}">
-                            <td class="d-none" th:text="${localidad.id}"></td>></td>
-                            <td class="d-none" th:text="${localidad.propietario.id}"></td>></td>
-							<td th:text="${localidad.propietario.nombre}"></td>
-							<td th:text="${localidad.propietario.apellidos}"></td>
+                            <td th:text="${localidad.id}"></td>></td>
+                            <td th:text="${localidad.propietario.nombre}"></td>
+                            <td th:text="${localidad.propietario.apellidos}"></td>
                             <td th:text="${localidad.sector.localizacion}"></td>
-                            <!--<td th:text="${sector.localizacion}"></td>-->
+							<td th:text="${localidad.tipoLocalidad}"></td>
                             <td th:text="${localidad.fila}"></td>
                             <td th:text="${localidad.numLocalidad}"></td>
                             <td th:text="${#numbers.formatCurrency(localidad.sector.precio)}"></td>

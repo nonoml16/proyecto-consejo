@@ -48,15 +48,15 @@ public class PropietarioController {
 	@GetMapping("/editar/{id}")
 	public String editarPropietario(@PathVariable("id") Long id, Model model) {
 		
-		Optional<Propietario> propietarioOpt = propietarioService.findById(id);
-		if(propietarioOpt.isPresent())
-			model.addAttribute("propietario", propietarioOpt.get());
+		Optional<Propietario> propietario = propietarioService.findById(id);
+		if(propietario.isPresent())
+			model.addAttribute("propietario", propietario.get());
 		return "admin/propietario/form-propietario";
 		
 	}
 	
 	@GetMapping("/borrar/{id}")
-	public String borrarPropietario(@PathVariable("id") long id,  Model model) {
+	public String borrarPropietario(@PathVariable("id") Long id,  Model model) {
 		Optional<Propietario> propietarioOpt = propietarioService.findById(id);
 		if(propietarioOpt.isPresent()) {
 			if(localidadService.numeroLocalidadesPropietario(propietarioOpt.get()) == 0)
