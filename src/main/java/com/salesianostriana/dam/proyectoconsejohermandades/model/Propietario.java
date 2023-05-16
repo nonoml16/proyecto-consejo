@@ -2,77 +2,53 @@ package com.salesianostriana.dam.proyectoconsejohermandades.model;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@SuppressWarnings("serial")
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-public class Propietario implements UserDetails {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@Entity
+public class Propietario extends Usuario{
 	
-	private String username, password;
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String dni;
 	
 	private String nombre, apellidos;
 	
-	private boolean esConsejero;
-	
+	/*
+	@ManyToOne
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_propietario_hermandad"))
+	private Hermandad hermandad;
+	*/
 	@OneToMany(mappedBy = "propietario", fetch = FetchType.EAGER,
 			cascade = CascadeType.ALL, orphanRemoval = true)
-	@Builder.Default
+	//@Builder.Default
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	private List<Localidad> localidades = new ArrayList<>();
-	
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		String role = "ROLE_";
-		role += (esConsejero) ? "ADMIN" : "USER";
-		return List.of(new SimpleGrantedAuthority(role));
-	}	
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
+	public Propietario(Long id, String username, String password, boolean consejero, 
+			String dni, String nombre, String apellidos, List<Localidad> localidades) {
+		super(id, username, password, consejero);
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.localidades = localidades;
 	}
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
 }

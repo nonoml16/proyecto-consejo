@@ -9,4 +9,5 @@ import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
 public interface PropietarioRepositorio extends JpaRepository<Propietario, Long>{
 
 	Optional<Propietario> findFirstByUsername(String username);
+	Optional<Propietario> findByUsername(String username);
 }

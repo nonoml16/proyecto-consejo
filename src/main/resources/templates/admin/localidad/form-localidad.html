@@ -41,11 +41,11 @@
                     <form th:action="@{/admin/localidad/nueva/submit}" th:object="${localidad}" action="#" method="post">
                         <div class="mb-2 mt-3">
                             <label for="nombre" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" th:field="*{propietario.nombre}" id="nombre" placeholder="Nombre" name="nombre">
+                            <input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Nombre" name="nombre">
                         </div>
                         <div class="mb-3">
                             <label for="apellidos" class="form-label">Apellidos:</label>
-                            <input type="text" class="form-control" th:field="*{propietario.apellidos}" id="apellidos" placeholder="Apellidos" name="apellidos">
+                            <input type="text" class="form-control" th:field="*{apellidos}" id="apellidos" placeholder="Apellidos" name="apellidos">
                         </div>
                         <div class="mb-3">
                             <label for="dni" class="form-label">DNI:</label>

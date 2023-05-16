@@ -1,14 +1,6 @@
 package com.salesianostriana.dam.proyectoconsejohermandades;
 
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
-import com.salesianostriana.dam.proyectoconsejohermandades.repositories.PropietarioRepositorio;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,14 +8,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class InitData {
 	
-	private final PropietarioRepositorio repo;
+	/*private final PropietarioRepositorio repo;
 	private final PasswordEncoder passwordEncoder;
 	
 	@PostConstruct
 	public void init() {
 		
 		Propietario usuario = Propietario.builder()
-				.esConsejero(false)
+				.id(1L)
+				.consejero(false)
 				.username("user")
 				//.password("1234")
 				.password(passwordEncoder.encode("1234"))
@@ -33,7 +26,8 @@ public class InitData {
 				.build();
 		
 		Propietario admin = Propietario.builder()
-				.esConsejero(true)
+				.id(2L)
+				.consejero(true)
 				.username("admin")
 				.password(passwordEncoder.encode("admin"))
 				.dni("89088712Y")
@@ -43,6 +37,6 @@ public class InitData {
 		
 		repo.saveAll(List.of(usuario, admin));
 		
-	}
+	}*/
 
 }
