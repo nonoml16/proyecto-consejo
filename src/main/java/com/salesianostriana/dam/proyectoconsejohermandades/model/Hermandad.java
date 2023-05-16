@@ -29,12 +29,11 @@ public class Hermandad {
 	private Long id;
 	
 	private String nombre, dia;
-	/*
+	
 	@OneToMany(mappedBy = "hermandad", fetch = FetchType.EAGER,
 			cascade = CascadeType.ALL, orphanRemoval = true)
 	@Builder.Default
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	private List<Propietario> listaHermanos = new ArrayList<Propietario>();
-	*/
 }

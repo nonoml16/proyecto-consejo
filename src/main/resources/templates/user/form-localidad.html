@@ -17,7 +17,7 @@
                         <a class="nav-link active" data-bs-toggle="pill" href="#home">Solicitar localidad</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="list-localidad.html" th:href="@{/localidad/misLocalidades}">Mis localidades</a>
+                        <a class="nav-link" href="list-localidad.html" th:href="@{/localidad/}">Mis localidades</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="pill" href="#">Editar perfil</a>
@@ -35,18 +35,7 @@
                     <h3>SOLICITAR LOCALIDAD</h3>
                     
                     <form th:action="@{/localidad/solicitar/submit}" th:object="${localidad}" action="#" method="post">
-                        <div class="mb-2 mt-3">
-                            <label for="nombre" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" th:field="*{propietario.nombre}" th:value="${propietario.nombre}" id="nombre" placeholder="Nombre" name="nombre" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="apellidos" class="form-label">Apellidos:</label>
-                            <input type="text" class="form-control" th:field="*{propietario.apellidos}" th:value="${propietario.apellidos}" id="apellidos" placeholder="Apellidos" name="apellidos" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="dni" class="form-label">DNI:</label>
-                            <input type="text" class="form-control" th:field="*{propietario.dni}" id="dni" placeholder="Introduzca su DNI" name="dni" readonly>
-                        </div>
+                        <input type="hidden" th:field="*{propietario}" th:value="${propietario}">
                         <div class="mb-3">
                             <label for="tipoLocalidad">Tipo de localidad:</label>
                             <select id="tipoLocalidad" th:field="*{tipoLocalidad}">

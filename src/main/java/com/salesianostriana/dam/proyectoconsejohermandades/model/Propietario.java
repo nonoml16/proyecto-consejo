@@ -1,13 +1,15 @@
 package com.salesianostriana.dam.proyectoconsejohermandades.model;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,11 +32,11 @@ public class Propietario extends Usuario{
 	
 	private String nombre, apellidos;
 	
-	/*
+	
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_propietario_hermandad"))
 	private Hermandad hermandad;
-	*/
+	
 	@OneToMany(mappedBy = "propietario", fetch = FetchType.EAGER,
 			cascade = CascadeType.ALL, orphanRemoval = true)
 	//@Builder.Default
