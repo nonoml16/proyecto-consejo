@@ -15,7 +15,7 @@ public class AdminControlador {
 	@GetMapping("/")
     public String showUserDetails(@AuthenticationPrincipal Propietario propietario, Model model) {
 		model.addAttribute("propietario", propietario);
-        return "admin";
+        return "index";
     }
 
 }
