@@ -6,9 +6,9 @@
     
 </head>
 <body>
-	<form th:action="@{/logout}" method="POST" id="logoutForm"></form>
+    <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
     <header th:replace="~{fragmentos/header::header}"></header>
-	<div class="container">
+    <div class="container">
         <main class="row container align-content-between">
             <div class="col-4">
                 <p class="titulo mt-4">SERVICIOS DISPONIBLES</p>
@@ -29,15 +29,44 @@
                         <a class="nav-link"  href="admin/sector/list-sector.html" th:href="@{/admin/sector/}">Sectores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="admin/hermandad/list-hermandad.html" th:href="@{/admin/hermandad/}">Hermandades</a>
+                        <a class="nav-link active"  href="admin/hermandad/list-hermandad.html" th:href="@{/admin/hermandad/}">Hermandades</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="pill" href="#">Editar perfil</a>
                     </li>
-                    
                 </ul>
+            </div>
+            <div class="tab-content col-8">
+                <div class="pull-right">
+					<a href="form-hermandad.html" th:href="@{/admin/hermandad/nuevo}" class="btn btn-primary">Nueva hermandad</a>
+				</div>
+                <div class="container tab-pane active">
+                    <table class="table">
+                        <thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+							<th>Día</th>
+                            <!--<th>Nº de Hermanos</th>-->
+                            <th>Operaciones</th>
+						</tr>
+					</thead>
+                    <tbody>
+                        <tr th:each="hermandad : ${hermandades}">
+							<td th:text="${hermandad.id}"></td>
+							<td th:text="${hermandad.nombre}"></td>
+                            <td th:text="${hermandad.dia}"></td>
+                            <!--<td th:text="${hermandad.hermanos}"></td>-->
+							<td class="operaciones"><a href="#"
+								th:href="@{/admin/hermandad/editar/{id}(id=${hermandad.id})}"
+								class="btn btn-primary">Editar</a>
+								<a class="btn btn-danger" th:href="@{/admin/hermandad/borrar/{id}(id=${hermandad.id})}">Borrar</a></td>
+						</tr>
+                    </tbody>
+                    </table>
+                </div>
             </div>
         </main>
     </div>
+    <footer th:replace="~{fragmentos/pie::pie}"></footer>
 </body>
-</html>

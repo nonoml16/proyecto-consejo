@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragmentos/head :: head" >
+    <meta charset="UTF-8">
+    <title>Portada</title>
+    
+</head>
+<body>
+    <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
+    <header th:replace="~{fragmentos/header::header}"></header>
+    <div class="container">
+        <main class="row container align-content-between">
+            <div class="col-4">
+                <p class="titulo mt-4">SERVICIOS DISPONIBLES</p>
+                <ul class="nav flex-column nav-pills nav-justified" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" href="user/form-localidad.html" th:href="@{/localidad/solicitar}">Solicitar localidad</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="form-localidad.html" th:href="@{/localidad/}">Mis localidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="pill" href="#">Editar perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-none" data-bs-toggle="pill" href="#localidades">Localidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-none"  href="admin/sector/sector.html" th:href="@{/admin/sector/}">Sectores</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content col-8">
+                <form method="post" action="#" th:action="@{/user/propietario/submit}" th:object="${propietario}">
+                    <h1>Editar perfil</h1>
+                    <input type="hidden" th:field="*{id}" id="id" />
+                    <input type="hidden" th:field="*{username}" id="username" />
+                    <input type="hidden" th:field="*{password}" id="password" />
+                    <input type="hidden" th:field="*{dni}" id="dni" />
+                    <div class="form-group">
+						<label for="nombre">Nombre</label><input type="text"
+							class="form-control" id="nombre" placeholder="Nombre"
+							required="required" th:field="*{nombre}">
+					</div>
+                    <div class="form-group">
+						<label for="apellidos">Apellidos</label><input type="text"
+							class="form-control" id="apellidos" placeholder="Apellidos"
+							required="required" th:field="*{apellidos}">
+					</div>
+                    <div class="form-group">
+                        <label for="hermandad">Hermandad</label>
+                        <input class="form-control" th:field="*{hermandad.nombre}" type="text" id="hermandad" disabled>
+                        <input class="form-control" th:field="*{hermandad.id}" type="text" id="hermandad" list="listaHermandades">
+                        <datalist id="listaHermandades">
+                            <option th:each="hermandad : ${hermandades}" th:value="${hermandad.id}" th:text="${hermandad.nombre}"></option>
+                        </datalist>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Guardar</button>
+                </form>
+            </div>
+        </main>
+    </div>
+    <footer th:replace="~{fragmentos/pie::pie}"></footer>
+</body>
