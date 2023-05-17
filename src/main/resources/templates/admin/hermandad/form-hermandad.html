@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragmentos/head :: head" >
+    <meta charset="UTF-8">
+    <title>Portada</title>
+    
+</head>
+<body>
+    <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
+    <header th:replace="~{fragmentos/header::header}"></header>
+    <div class="container">
+        <main class="row container align-content-between">
+            <div class="col-4">
+                <p class="titulo mt-4">SERVICIOS DISPONIBLES</p>
+                <ul class="nav flex-column nav-pills nav-justified" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" href="user/form-localidad.html" th:href="@{/localidad/solicitar}">Solicitar localidad</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user/list-localidad.html" th:href="@{/localidad/misLocalidades}">Mis localidades</a>
+                    </li>
+					<li class="nav-item">
+                        <a class="nav-link" href="admin/propietario/list-sector.html" th:href="@{/admin/propietario/}">Propietarios</a>
+                    </li>
+					<li class="nav-item">
+                        <a class="nav-link" href="admin/localidad/list-localidad.html" th:href="@{/admin/localidad/}">Localidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  href="admin/sector/list-sector.html" th:href="@{/admin/sector/}">Sectores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active"  href="admin/hermandad/list-hermandad.html" th:href="@{/admin/hermandad/}">Hermandades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#">Editar perfil</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content col-8">
+                <form method="post" action="#" th:action="@{/admin/hermandad/nuevo/submit}" th:object="${hermandad}">
+					<h1><span th:text="${hermandad.id} ? 'Editar' : 'Nuevo'"></span> hermandad </h1>
+
+					<input type="hidden" th:field="*{id}" id="id" />
+					<div class="form-group">
+						<label for="nombre">Nombre de la Hermandad</label><input type="text"
+							class="form-control" id="nombre" placeholder="Nombre de la Hermandad"
+							required="required" th:field="*{nombre}">
+					</div>
+					<div class="form-group">
+						<label for="dia">Día de salida</label> <input type="text"
+							class="form-control" id="dia" placeholder="Día de salida" th:field="*{dia}" />
+
+					</div>
+
+					
+					<button type="submit" class="btn btn-primary">Enviar</button>
+				</form>
+            </div>
+        </main>
+    </div>
+    <footer th:replace="~{fragmentos/pie::pie}"></footer>
+</body>
