@@ -12,9 +12,7 @@ public class MainControlador {
 
 	@GetMapping("/")
     public String showUserDetails(@AuthenticationPrincipal Propietario propietario, Model model) {
-        model.addAttribute("nombre", propietario.getNombre());
-        model.addAttribute("apellidos", propietario.getApellidos());
-        model.addAttribute("dni", propietario.getDni());
+		model.addAttribute("propietario", propietario);
         return "index";
     }
 }
