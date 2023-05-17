@@ -10,30 +10,7 @@
     <header th:replace="~{fragmentos/header::header}"></header>
     <div class="container">
         <main class="row container align-content-between">
-            <div class="col-4">
-                <p class="titulo mt-4">SERVICIOS DISPONIBLES</p>
-                <ul class="nav flex-column nav-pills nav-justified" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link" href="user/form-localidad.html" th:href="@{/localidad/solicitar}">Solicitar localidad</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="user/list-localidad.html" th:href="@{/localidad/misLocalidades}">Mis localidades</a>
-                    </li>
-					<li class="nav-item">
-                        <a class="nav-link" href="admin/propietario/list-sector.html" th:href="@{/admin/propietario/}">Propietarios</a>
-                    </li>
-					<li class="nav-item">
-                        <a class="nav-link active" href="admin/localidad/list-localidad.html" th:href="@{/admin/localidad/}">Localidades</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"  href="admin/sector/list-sector.html" th:href="@{/admin/sector/}">Sectores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="pill" href="#">Editar perfil</a>
-                    </li>
-                    
-                </ul>
-            </div>
+            <div th:replace="~{fragmentos/menu::menu(activeMenu='localidades')}"></div>
             <div class="tab-content col-8">
                 <div class="pull-right">
 					<a href="form-localidad.html" th:href="@{/admin/localidad/nueva}" class="btn btn-primary">Nueva
