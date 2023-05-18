@@ -62,8 +62,8 @@ INSERT INTO Hermandad (id, nombre, dia) VALUES (58, 'El Santo Entierro', 'Sábad
 INSERT INTO Hermandad (id, nombre, dia) VALUES (59, 'La Soledad', 'Sábado Santo');
 INSERT INTO Hermandad (id, nombre, dia) VALUES (60, 'La Resurrección', 'Domingo de Resurrección');
 
-INSERT INTO Propietario (id, dni, nombre, apellidos, hermandad_id) VALUES (1, '89088712Y', 'Francisco', 'Vélez de Luna', 1);
-INSERT INTO Propietario (id, dni, nombre, apellidos, hermandad_id) VALUES (2, '21135681S', 'Antonio', 'Martínez López', 2);
+INSERT INTO Propietario (id, dni, nombre, apellidos, hermandad_id) VALUES (1, '89088712Y', 'Francisco', 'Vélez de Luna', 52);
+INSERT INTO Propietario (id, dni, nombre, apellidos, hermandad_id) VALUES (2, '21135681S', 'Antonio', 'Martínez López', 40);
 
 INSERT INTO Sector (id, localizacion, precio) VALUES (1, 'Campana', 299);
 INSERT INTO Sector (id, localizacion, precio) VALUES (2, 'Sierpes', 249);
