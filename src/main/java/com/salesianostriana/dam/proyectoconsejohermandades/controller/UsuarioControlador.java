@@ -24,11 +24,14 @@ public class UsuarioControlador {
 	@Autowired
 	private HermandadService hermandadService;
 	
+	@ModelAttribute("propietario")
+	public Propietario usuario (@AuthenticationPrincipal Propietario propietario) {
+		return propietario;
+	}
+	
 	@GetMapping("/editar/{id}")
-	public String editarCuenta (@PathVariable("id") Long id, @AuthenticationPrincipal Propietario propietario, Model model) {
-		model.addAttribute("propietario", propietario);
+	public String editarCuenta (@PathVariable("id") Long id, Model model) {
 		model.addAttribute("hermandades", hermandadService.findAll());
-		//model.addAttribute("hermandad", propietario.getHermandad());
 		return"user/form-perfil";
 	}
 	

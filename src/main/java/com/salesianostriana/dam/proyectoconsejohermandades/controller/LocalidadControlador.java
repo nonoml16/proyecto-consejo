@@ -25,7 +25,11 @@ public class LocalidadControlador {
 	@Autowired
 	private LocalidadService localidadService;
 	
-
+	@ModelAttribute("propietario")
+	public Propietario usuario (@AuthenticationPrincipal Propietario propietario) {
+		return propietario;
+	}
+	
 	@ModelAttribute("tiposLocalidad")
     public TipoLocalidad[] getTiposLocalidad() {
         return TipoLocalidad.values();
@@ -54,10 +58,9 @@ public class LocalidadControlador {
 	*/
 	
 	@GetMapping("/solicitar")
-    public String mostrarFormulario(Model model, @AuthenticationPrincipal Propietario propietario) {
+    public String mostrarFormulario(Model model) {
         model.addAttribute("localidad", new Localidad());
         model.addAttribute("sectores", sectorService.findAll());
-        model.addAttribute("propietario", propietario);
         return "user/form-localidad";
     }
 	@PostMapping("/solicitar/submit")

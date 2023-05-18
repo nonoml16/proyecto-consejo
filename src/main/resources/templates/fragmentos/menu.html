@@ -18,7 +18,7 @@
                 <a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${activeMenu == 'propietarios'} ? 'active' : ''" href="admin/propietario/list-sector.html" th:href="@{/admin/propietario/}">Propietarios</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${activeMenu == 'localidades'} ? 'active' : ''" href="admin/localidad/list-localidad.html" th:href="@{/admin/localidad/}">Localidades</a>
+                <a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${activeMenu == 'localidadesA'} ? 'active' : ''" href="admin/localidad/list-localidad.html" th:href="@{/admin/localidad/}">Localidades</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${activeMenu == 'sectores'} ? 'active' : ''" href="admin/sector/list-sector.html" th:href="@{/admin/sector/}">Sectores</a>

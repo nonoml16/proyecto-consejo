@@ -23,9 +23,13 @@ public class HermandadController {
 	@Autowired
 	private HermandadService hermandadService;
 	
+	@ModelAttribute("propietario")
+	public Propietario usuario (@AuthenticationPrincipal Propietario propietario) {
+		return propietario;
+	}
+	
 	@GetMapping("/")
-	public String index (@AuthenticationPrincipal Propietario propietario, Model model) {
-		model.addAttribute("propietario", propietario);
+	public String index (Model model) {
 		model.addAttribute("hermandades", hermandadService.findAll());
 		return "admin/hermandad/list-hermandad";
 	}

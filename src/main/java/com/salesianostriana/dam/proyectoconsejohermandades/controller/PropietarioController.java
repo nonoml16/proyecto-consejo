@@ -34,16 +34,19 @@ public class PropietarioController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@ModelAttribute("propietario")
+	public Propietario usuario (@AuthenticationPrincipal Propietario propietario) {
+		return propietario;
+	}
+	
 	@GetMapping("/")
-	public String index (@AuthenticationPrincipal Propietario propietario, Model model) {
-		model.addAttribute("propietario", propietario);
+	public String index (Model model) {
 		model.addAttribute("propietarios", propietarioService.findAll());
 		return "admin/propietario/list-propietario";
 	}
 	
 	@GetMapping("/nuevo")
-	public String nuevoPropietario(@AuthenticationPrincipal Propietario propietario, Model model) {
-		model.addAttribute("propietario", propietario);
+	public String nuevoPropietario(Model model) {
 		model.addAttribute("hermandades", hermandadService.findAll());
 		model.addAttribute("propietario", new Propietario());
 		return "admin/propietario/form-propietario";
