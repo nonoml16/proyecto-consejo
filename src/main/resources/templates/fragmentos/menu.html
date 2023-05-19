@@ -12,7 +12,8 @@
                 <a class="nav-link" th:classappend="${activeMenu == 'solicitarLocalidad'} ? 'active' : ''" href="user/form-localidad.html" th:href="@{/localidad/solicitar}">Solicitar localidad</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:classappend="${activeMenu == 'localidades'} ? 'active' : ''" href="user/list-localidad.html" th:href="@{/localidad/}">Mis localidades</a>
+                <!--<a class="nav-link" th:classappend="${activeMenu == 'localidades'} ? 'active' : ''" href="user/list-localidad.html" th:href="@{/localidad/}">Mis localidades</a>-->
+                <a class="nav-link" th:classappend="${activeMenu == 'localidades'} ? 'active' : ''" href="user/list-localidad.html" th:href="@{/localidad/{id}(id=${propietario.id})}">Mis localidades</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${activeMenu == 'propietarios'} ? 'active' : ''" href="admin/propietario/list-sector.html" th:href="@{/admin/propietario/}">Propietarios</a>

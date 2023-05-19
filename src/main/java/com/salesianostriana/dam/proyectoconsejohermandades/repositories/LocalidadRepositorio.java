@@ -1,5 +1,8 @@
 package com.salesianostriana.dam.proyectoconsejohermandades.repositories;
 
+
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -14,4 +17,7 @@ public interface LocalidadRepositorio extends JpaRepository<Localidad, Long>{
 	
 	@Query("select count(l) from Localidad l where l.propietario = ?1")
 	public int findNumLocalidadesByPropietario(Propietario propietario);
+	
+	Optional<Localidad> findByPropietario(Propietario propietario);
+	
 }

@@ -13,10 +13,17 @@
             <div th:replace="~{fragmentos/menu::menu(activeMenu='localidadesA')}"></div>
             <div class="tab-content col-8">
                 <div id="home" class="container tab-pane active"><br>
-                    <h3>SOLICITAR LOCALIDAD</h3>
                     
                     <form th:action="@{/admin/localidad/nueva/submit}" th:object="${localidad}" action="#" method="post">
-                        
+                        <h1><span th:text="${propietario.dni} ? 'Editar' : 'Nueva'"></span> localidad </h1>
+                        <input type="hidden" th:field="*{id}" id="id" />
+                        <div class="form-group">
+                            <label for="propietario">Propietario:</label>
+                            <input class="form-control" th:field="*{propietario.id}" type="text" id="propietario" list="listaPropietarios">
+                            <datalist id="listaPropietarios">
+                                <option th:each="propietario : ${propietarios}" th:value="${propietario.id}" th:text="${propietario.apellidos} + ', ' + ${propietario.nombre}"></option>
+                            </datalist>
+                        </div>
                         <div class="mb-3">
                             <label for="tipoLocalidad">Tipo de localidad:</label>
                             <select id="tipoLocalidad" th:field="*{tipoLocalidad}">

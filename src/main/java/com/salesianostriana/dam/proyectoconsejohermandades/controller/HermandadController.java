@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.salesianostriana.dam.proyectoconsejohermandades.model.DiasSemanaSanta;
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Hermandad;
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
 import com.salesianostriana.dam.proyectoconsejohermandades.service.HermandadService;
@@ -27,6 +28,11 @@ public class HermandadController {
 	public Propietario usuario (@AuthenticationPrincipal Propietario propietario) {
 		return propietario;
 	}
+	
+	@ModelAttribute("dias")
+    public DiasSemanaSanta[] getTiposLocalidad() {
+        return DiasSemanaSanta.values();
+    }
 	
 	@GetMapping("/")
 	public String index (Model model) {

@@ -30,7 +30,7 @@
                         <tr th:each="hermandad : ${hermandades}">
 							<td th:text="${hermandad.id}"></td>
 							<td th:text="${hermandad.nombre}"></td>
-                            <td th:text="${hermandad.dia}"></td>
+                            <td th:text="${hermandad.dia.displayValue}"></td>
                             <!--<td th:text="${hermandad.hermanos}"></td>-->
 							<td class="operaciones"><a href="#"
 								th:href="@{/admin/hermandad/editar/{id}(id=${hermandad.id})}"
