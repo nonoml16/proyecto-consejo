@@ -3,6 +3,7 @@ package com.salesianostriana.dam.proyectoconsejohermandades.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
@@ -35,7 +36,7 @@ public class Propietario extends Usuario{
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_propietario_hermandad"))
 	private Hermandad hermandad;
 	
-	@OneToMany(mappedBy = "propietario")
+	@OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL, orphanRemoval = true)
 	//@Builder.Default
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
@@ -50,4 +51,8 @@ public class Propietario extends Usuario{
 		this.localidades = localidades;
 	}
 
+	public void borrarLocalidad(Localidad localidad) {
+		localidades.remove(localidad);
+		localidad.setPropietario(null);
+	}
 }

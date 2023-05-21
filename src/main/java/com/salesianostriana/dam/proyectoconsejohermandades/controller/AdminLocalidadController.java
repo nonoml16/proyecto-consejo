@@ -76,8 +76,9 @@ public class AdminLocalidadController {
 	
 	@GetMapping("/borrar/{id}")
 	public String borrarLocalidad(@PathVariable("id") Long id, Model model) {
-		
-		localidadService.deleteById(id);
+		Optional<Localidad> localidadOpt = localidadService.findById(id);
+		if(localidadOpt.isPresent())
+			localidadService.eliminarLocalidad(id);
 		return "redirect:/admin/localidad/";
 		
 	}

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
+import com.salesianostriana.dam.proyectoconsejohermandades.repositories.LocalidadRepositorio;
 import com.salesianostriana.dam.proyectoconsejohermandades.service.HermandadService;
-import com.salesianostriana.dam.proyectoconsejohermandades.service.LocalidadService;
 import com.salesianostriana.dam.proyectoconsejohermandades.service.PropietarioService;
 
 @Controller
@@ -26,7 +26,7 @@ public class PropietarioController {
 	private PropietarioService propietarioService;
 	
 	@Autowired
-	private LocalidadService localidadService;
+	private LocalidadRepositorio localidadRepositorio;
 	
 	@Autowired
 	private HermandadService hermandadService;
@@ -69,7 +69,7 @@ public class PropietarioController {
 		return "admin/propietario/form-propietario";
 		
 	}
-	
+	/*
 	@GetMapping("/borrar/{id}")
 	public String borrarPropietario(@PathVariable("id") Long id,  Model model) {
 		Optional<Propietario> propietarioOpt = propietarioService.findById(id);
@@ -81,5 +81,15 @@ public class PropietarioController {
 		
 		return "redirect:/admin/propietario/";
 	}
-	
+	*/
+	@GetMapping("/borrar/{id}")
+	public String borrarPropietario(@PathVariable("id") Long id,  Model model) {
+		Optional<Propietario> propietarioOpt = propietarioService.findById(id);
+		if(propietarioOpt.isPresent()) {
+			localidadRepositorio.deleteAll(propietarioOpt.get().getLocalidades());
+			propietarioService.deleteById(id);
+		}
+		
+		return "redirect:/admin/propietario/";
+	}
 }

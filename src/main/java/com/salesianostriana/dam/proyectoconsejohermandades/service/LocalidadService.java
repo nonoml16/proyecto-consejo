@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.proyectoconsejohermandades.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Localidad;
@@ -17,4 +19,10 @@ public class LocalidadService extends BaseServiceImpl<Localidad, Long, Localidad
 	public int numeroLocalidadesPropietario(Propietario propietario) {
 		return repository.findNumLocalidadesByPropietario(propietario);
 	}
+	
+	public void eliminarLocalidad(Long localidadId) {
+		  Optional<Localidad> localidad = findById(localidadId);
+		  localidad.get().getPropietario().borrarLocalidad(localidad.get());
+		  delete(localidad.get());
+		}
 }

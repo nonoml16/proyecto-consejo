@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Sector;
-import com.salesianostriana.dam.proyectoconsejohermandades.service.LocalidadService;
 import com.salesianostriana.dam.proyectoconsejohermandades.service.SectorService;
 
 @Controller
@@ -23,9 +22,6 @@ public class SectorControlador {
 
 	@Autowired
 	private SectorService sectorService;
-	
-	@Autowired
-	private LocalidadService localidadService;
 	
 	@ModelAttribute("propietario")
 	public Propietario usuario (@AuthenticationPrincipal Propietario propietario) {
@@ -68,8 +64,7 @@ public class SectorControlador {
 		Optional<Sector> sector = sectorService.findById(id);
 		
 		if (sector.isPresent())
-			if (localidadService.numeroLocalidadesSector(sector.get()) == 0)
-				sectorService.deleteById(id);
+			sectorService.deleteById(id);
 
 		return "redirect:/admin/sector/";
 		
