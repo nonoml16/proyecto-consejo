@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,7 +38,8 @@ public class Propietario extends Usuario{
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_propietario_hermandad"))
 	private Hermandad hermandad;
 	
-	@OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "propietario", fetch = FetchType.EAGER,
+			cascade = CascadeType.REMOVE, orphanRemoval = true)
 	//@Builder.Default
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
@@ -55,4 +58,12 @@ public class Propietario extends Usuario{
 		localidades.remove(localidad);
 		localidad.setPropietario(null);
 	}
+	
+	@PreRemove
+	public void antesDeBorrar() {
+		for (Localidad localidad : localidades) {
+			localidades.remove(localidad);
+		}
+	}
+	
 }

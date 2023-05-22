@@ -52,14 +52,14 @@ public class LocalidadControlador {
 		model.addAttribute("localidades", localidadRepositorio.findByPropietario(propietario));
 		return "user/list-localidad";
 	}*/
-	
+	/*
 	@GetMapping("/{id}")
 	public String index (@PathVariable("id") Long id, Model model) {
 		Optional<Propietario> propietarioOpt = propietarioService.findById(id);
 		model.addAttribute("localidades", localidadRepositorio.findByPropietario(propietarioOpt.get()));
 		return "user/list-localidad";
 	}
-	
+	*/
 	@GetMapping("/solicitar")
     public String mostrarFormulario(Model model) {
         model.addAttribute("localidad", new Localidad());

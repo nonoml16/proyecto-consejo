@@ -17,7 +17,6 @@ import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
 import com.salesianostriana.dam.proyectoconsejohermandades.model.TipoLocalidad;
 import com.salesianostriana.dam.proyectoconsejohermandades.service.LocalidadService;
 import com.salesianostriana.dam.proyectoconsejohermandades.service.PropietarioService;
-import com.salesianostriana.dam.proyectoconsejohermandades.service.SectorService;
 
 @Controller
 @RequestMapping("/admin/localidad")
@@ -25,9 +24,6 @@ public class AdminLocalidadController {
 	
 	@Autowired
 	private LocalidadService localidadService;
-	
-	@Autowired
-	private SectorService sectorService;
 	
 	@Autowired
 	private PropietarioService propietarioService;
@@ -42,26 +38,12 @@ public class AdminLocalidadController {
 		return propietario;
 	}
 	
-	@GetMapping("/")
-	public String index (Model model) {
-		model.addAttribute("localidades", localidadService.findAll());
-		return "admin/localidad/list-localidad";
-	}
-	
-	@GetMapping("/nueva")
-	public String nuevaLocalidad(Model model) {
-		model.addAttribute("localidad", new Localidad());
-		model.addAttribute("sectores", sectorService.findAll());
-		model.addAttribute("propietarios", propietarioService.findAll());
-		return "admin/localidad/form-localidad";
-	}
-	
 	@PostMapping("/nueva/submit")
 	public String submitNuevaLocalidad(@ModelAttribute("localidad") Localidad localidad, Model model) {
 		
 		localidadService.save(localidad);
 		
-		return "redirect:/admin/localidad/";
+		return "redirect:/admin/sector/";
 	}
 	
 	@GetMapping("/editar/{id}")
@@ -70,16 +52,8 @@ public class AdminLocalidadController {
 		Optional<Localidad> localidadOpt = localidadService.findById(id);
 		if(localidadOpt.isPresent())
 			model.addAttribute("localidad", localidadOpt.get());
+		model.addAttribute("propietarios", propietarioService.findAll());
 		return "admin/localidad/form-localidad";
-		
-	}
-	
-	@GetMapping("/borrar/{id}")
-	public String borrarLocalidad(@PathVariable("id") Long id, Model model) {
-		Optional<Localidad> localidadOpt = localidadService.findById(id);
-		if(localidadOpt.isPresent())
-			localidadService.eliminarLocalidad(id);
-		return "redirect:/admin/localidad/";
 		
 	}
 }

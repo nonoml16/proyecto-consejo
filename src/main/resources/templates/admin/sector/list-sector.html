@@ -24,6 +24,8 @@
 							<th>ID</th>
 							<th>Localizacion</th>
 							<th>Precio</th>
+                            <th></th>
+                            <th></th>
 						</tr>
 					</thead>
                     <tbody>
@@ -31,6 +33,7 @@
 							<td th:text="${sector.id}"></td>
 							<td th:text="${sector.localizacion}"></td>
                             <td th:text="${#numbers.formatCurrency(sector.precio)}"></td>
+                            <td><a href="#" th:href="@{/admin/sector/localidades/{id}(id=${sector.id})}" class="btn btn-primary">Ver localidades</a></td>
 							<td class="operaciones"><a href="#"
 								th:href="@{/admin/sector/editar/{id}(id=${sector.id})}"
 								class="btn btn-primary">Editar</a>

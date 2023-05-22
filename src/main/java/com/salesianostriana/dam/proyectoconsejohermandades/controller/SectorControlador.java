@@ -67,7 +67,13 @@ public class SectorControlador {
 			sectorService.deleteById(id);
 
 		return "redirect:/admin/sector/";
-		
-		
+	}
+	
+	@GetMapping("/localidades/{id}")
+	public String mostrarLocalidadesSector(@PathVariable("id") Long id, Model model) {
+		Optional<Sector> sector = sectorService.findById(id);
+		if (sector.isPresent())
+			model.addAttribute("sector", sector.get());
+		return "admin/localidad/list-localidad";
 	}
 }

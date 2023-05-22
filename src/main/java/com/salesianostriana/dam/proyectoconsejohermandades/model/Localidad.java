@@ -3,12 +3,12 @@ package com.salesianostriana.dam.proyectoconsejohermandades.model;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PreRemove;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,7 +28,7 @@ public class Localidad {
 	
 	private int fila, numLocalidad;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_localidad_propietario"))
 	private Propietario propietario;
 	
@@ -38,6 +38,10 @@ public class Localidad {
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_localidad_sector"))
 	private Sector sector;
-	
-	
+	/*
+	@PreRemove
+	public void antesDeBorrar() {
+		setPropietario(null);
+	}
+	*/
 }
