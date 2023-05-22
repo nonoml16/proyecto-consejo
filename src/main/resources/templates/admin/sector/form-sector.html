@@ -18,17 +18,30 @@
 
 					<input type="hidden" th:field="*{id}" id="id" />
 					<div class="form-group">
-						<label for="localizacion">Localización</label><input type="text"
-							class="form-control" id="localizacion" placeholder="Localización"
-							required="required" th:field="*{localizacion}">
+						<label for="localizacion">Localización:</label>
+                        <input type="text" class="form-control" id="localizacion" placeholder="Localización" required="required" th:field="*{localizacion}">
 					</div>
+                    <div class="mb-3">
+                        <label for="tipoLocalidad">Tipo de localidad:</label>
+                        <select id="tipoLocalidad" name="tipo">
+                            <option value="SILLA">Silla</option>
+                            <option value="PALCO">Palco</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="numFilas">Numero de filas:</label>
+                            <input type="number" class="form-control" name="numFilas" id="numFilas" placeholder="1.0" />
+                        </div>
+                        <div class="col">
+                            <label for="numLocalidades">Numero de localidades por fila:</label>
+                            <input type="number" class="form-control" name="numLocalidades" id="numLocalidades" placeholder="1.0" />
+                        </div>
+                    </div>
 					<div class="form-group">
-						<label for="precio">Precio</label> <input type="number"
-							class="form-control" id="precio" placeholder="1.0" th:field="*{precio}" />
-
+						<label for="precio">Precio:</label>
+                        <input type="number" class="form-control" id="precio" placeholder="1.0" th:field="*{precio}" />
 					</div>
-
-					
 					<button type="submit" class="btn btn-primary">Enviar</button>
 				</form>
             </div>

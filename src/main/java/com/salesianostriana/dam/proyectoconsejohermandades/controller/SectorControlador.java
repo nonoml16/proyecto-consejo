@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.proyectoconsejohermandades.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.salesianostriana.dam.proyectoconsejohermandades.model.Localidad;
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Sector;
+import com.salesianostriana.dam.proyectoconsejohermandades.model.TipoLocalidad;
 import com.salesianostriana.dam.proyectoconsejohermandades.service.SectorService;
 
 @Controller
@@ -28,6 +33,11 @@ public class SectorControlador {
 		return propietario;
 	}
 	
+	@ModelAttribute("tiposLocalidad")
+    public TipoLocalidad[] getTiposLocalidad() {
+        return TipoLocalidad.values();
+    }
+	
 	@GetMapping("/")
 	public String index (Model model) {
 		model.addAttribute("sectores", sectorService.findAll());
@@ -41,10 +51,25 @@ public class SectorControlador {
 	}
 	
 	@PostMapping("/nuevo/submit")
-	public String submitNuevoSector(@ModelAttribute("sector") Sector sector, Model model) {
+	public String submitNuevoSector(@ModelAttribute("sector") Sector sector, @RequestParam("numFilas") int numFilas,
+            @RequestParam("numLocalidades") int numLocalidades, @RequestParam("tipo") String tipo, Model model) {
 		
-		sectorService.save(sector);
 		
+		List<Localidad> localidades = new ArrayList<>();
+	    System.out.println(tipo);
+	    for (int fila = 1; fila <= numFilas; fila++) {
+	        for (int numero = 1; numero <= numLocalidades; numero++) {
+	            Localidad localidad = new Localidad();
+	            localidad.setPropietario(null);
+	            localidad.setFila(fila);
+	            localidad.setNumLocalidad(numero);
+	            localidad.setTipoLocalidad(TipoLocalidad.valueOf(tipo));
+	            localidad.setSector(sector);
+	            localidades.add(localidad);
+	        }
+	    }
+	    sector.setLocalidades(localidades);
+	    sectorService.save(sector);
 		return "redirect:/admin/sector/";
 	}
 	
