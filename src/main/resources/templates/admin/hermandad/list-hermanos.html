@@ -13,33 +13,32 @@
             <div th:replace="~{fragmentos/menu::menu(activeMenu='propietarios')}"></div>
             <div class="tab-content col-8">
                 <div class="d-flex justify-content-between align-items-center mt-4">
-                    <h1 class="titulos-admin">Propietarios</h1>
-					<a href="form-propietario.html" th:href="@{/admin/propietario/nuevo}" class="btn btn-primary">Nuevo propietario</a>
+                    <h1 class="titulos-admin">Hermandad: <span th:text="${hermandad.nombre}"></span></h1>
+					<h3 class="titulo">
+                        <span th:text="${hermandad.getListaHermanos.size}"></span>
+                        <span th:text="${hermandad.getListaHermanos.size == 1} ? ' hermano' : ' hermanos'"></span>
+                    </h3>
 				</div>
                 <div class="container tab-pane active">
                     <table class="table">
                         <thead>
 						<tr>
-                            <th>ID</th>
-							<th>DNI</th>
+                            <th class="d-none">ID hermano</th>
+                            <th>Num. hermano</th>
 							<th>Nombre</th>
 							<th>Apellidos</th>
-                            <th>Hermandad</th>
-                            <th>Operaciones</th>
-                            <!--<th>Nº de localidades</th>-->
+                            <th></th>
 						</tr>
 					</thead>
                     <tbody>
-                        <tr th:each="propietario : ${propietarios}">
-                            <td th:text="${propietario.id}"></td>
-							<td th:text="${propietario.dni}"></td>
+                        <tr th:each="propietario, propietarioIndex : ${hermandad.listaHermanos}">
+                            <td class="d-none" th:text="${propietario.id}"></td>
+							<td th:text="${propietarioIndex.index + 1}"></td>
 							<td th:text="${propietario.nombre}"></td>
                             <td th:text="${propietario.apellidos}"></td>
-                            <td th:text="${propietario.hermandad != null ? propietario.hermandad.nombre : 'Sin hermandad'}"></td>
-							<td class="operaciones"><a href="#"
-								th:href="@{/admin/propietario/editar/{id}(id=${propietario.id})}"
-								class="btn btn-primary">Editar</a>
-								<a class="btn btn-danger" th:href="@{/admin/propietario/borrar/{id}(id=${propietario.id})}">Borrar</a></td>
+							<td class="operaciones">
+								<a class="btn btn-danger" th:href="@{/admin/hermandad/hermanos/borrar/{id}(id=${propietario.id})}">Borrar hermano</a>
+                            </td>
 						</tr>
                     </tbody>
                     </table>
@@ -47,6 +46,7 @@
             </div>
         </main>
     </div>
+    
     <footer th:replace="~{fragmentos/pie::pie}"></footer>
 </body>
 </html>
