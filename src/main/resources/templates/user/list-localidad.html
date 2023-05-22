@@ -28,7 +28,8 @@
 					</thead>
                     <tbody>
                         <tr th:each="localidad : ${localidades}">
-                            <td th:text="${localidad.id}"></td>></td>
+                            <td class="d-none" th:text="localidad.propietario.id"></td>
+                            <td th:text="${localidad.id}"></td>
                             <td th:text="${localidad.propietario.nombre}"></td>
                             <td th:text="${localidad.propietario.apellidos}"></td>
                             <td th:text="${localidad.sector.localizacion}"></td>

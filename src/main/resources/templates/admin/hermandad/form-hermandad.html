@@ -21,11 +21,12 @@
 							class="form-control" id="nombre" placeholder="Nombre de la Hermandad"
 							required="required" th:field="*{nombre}">
 					</div>
-					<div class="form-group">
-						<label for="dia">Día de salida</label> <input type="text"
-							class="form-control" id="dia" placeholder="Día de salida" th:field="*{dia}" />
-
-					</div>
+					<div class="mb-3">
+                        <label for="dia">Día de salida:</label>
+                        <select id="dia" th:field="*{dia}">
+                            <option th:each="dia : ${dias}" th:value="${dia}" th:text="${dia.displayValue}"></option>
+                        </select>
+                    </div>
 
 					
 					<button type="submit" class="btn btn-primary">Enviar</button>

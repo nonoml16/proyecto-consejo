@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.salesianostriana.dam.proyectoconsejohermandades.model.Localidad;
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
 import com.salesianostriana.dam.proyectoconsejohermandades.service.HermandadService;
-import com.salesianostriana.dam.proyectoconsejohermandades.service.LocalidadService;
 import com.salesianostriana.dam.proyectoconsejohermandades.service.PropietarioService;
 
 @Controller
@@ -26,24 +26,24 @@ public class PropietarioController {
 	private PropietarioService propietarioService;
 	
 	@Autowired
-	private LocalidadService localidadService;
-	
-	@Autowired
 	private HermandadService hermandadService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@ModelAttribute("propietario")
+	public Propietario usuario (@AuthenticationPrincipal Propietario propietario) {
+		return propietario;
+	}
+	
 	@GetMapping("/")
-	public String index (@AuthenticationPrincipal Propietario propietario, Model model) {
-		model.addAttribute("propietario", propietario);
+	public String index (Model model) {
 		model.addAttribute("propietarios", propietarioService.findAll());
 		return "admin/propietario/list-propietario";
 	}
 	
 	@GetMapping("/nuevo")
-	public String nuevoPropietario(@AuthenticationPrincipal Propietario propietario, Model model) {
-		model.addAttribute("propietario", propietario);
+	public String nuevoPropietario(Model model) {
 		model.addAttribute("hermandades", hermandadService.findAll());
 		model.addAttribute("propietario", new Propietario());
 		return "admin/propietario/form-propietario";
@@ -71,9 +71,12 @@ public class PropietarioController {
 	public String borrarPropietario(@PathVariable("id") Long id,  Model model) {
 		Optional<Propietario> propietarioOpt = propietarioService.findById(id);
 		if(propietarioOpt.isPresent()) {
-			if(localidadService.numeroLocalidadesPropietario(propietarioOpt.get()) == 0)
-				propietarioService.deleteById(id);
-			
+			Propietario p = propietarioOpt.get();
+			for (Localidad l : p.getLocalidades()) {
+				l.setPropietario(null);
+			}
+				
+			propietarioService.deleteById(id);
 		}
 		
 		return "redirect:/admin/propietario/";
