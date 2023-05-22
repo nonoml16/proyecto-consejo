@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -26,7 +28,10 @@ public class Hermandad {
 	@GeneratedValue
 	private Long id;
 	
-	private String nombre, dia;
+	private String nombre;
+	
+	@Enumerated(EnumType.STRING)
+	private DiasSemanaSanta dia;
 	
 	@OneToMany(mappedBy = "hermandad")
 	@Builder.Default
