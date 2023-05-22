@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PreRemove;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,10 +37,4 @@ public class Localidad {
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_localidad_sector"))
 	private Sector sector;
-	/*
-	@PreRemove
-	public void antesDeBorrar() {
-		setPropietario(null);
-	}
-	*/
 }

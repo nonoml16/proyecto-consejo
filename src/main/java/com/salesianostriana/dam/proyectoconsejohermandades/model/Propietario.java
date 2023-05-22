@@ -10,7 +10,6 @@ import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.PreRemove;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -54,16 +53,4 @@ public class Propietario extends Usuario{
 		this.localidades = localidades;
 	}
 
-	public void borrarLocalidad(Localidad localidad) {
-		localidades.remove(localidad);
-		localidad.setPropietario(null);
-	}
-	
-	@PreRemove
-	public void antesDeBorrar() {
-		for (Localidad localidad : localidades) {
-			localidades.remove(localidad);
-		}
-	}
-	
 }

@@ -10,18 +10,20 @@
     <header th:replace="~{fragmentos/header::header}"></header>
     <div class="container">
         <main class="row container align-content-between">
-            <div th:replace="~{fragmentos/menu::menu(activeMenu='localidadesA')}"></div>
+            <div th:replace="~{fragmentos/menu::menu(activeMenu='sectores')}"></div>
             <div class="tab-content col-8">
                 <div class="container tab-pane active">
-                    <table class="table mt-4">
+                    <h1 class="titulos-admin mt-1">Sector: <span th:text="${sector.localizacion}"></span></h1>
+                    <table class="table mt-1">
                         <thead>
 						<tr>
                             <th>ID</th>
                             <th class="d-none">ID propietario</th>
 							<th>Nombre</th>
                             <th>Apellidos</th>
+                            <th>Tipo</th>
                             <th>Fila</th>
-                            <th>Número de localidad</th>
+                            <th>Num. localidad</th>
 							<th>Precio</th>
                             <th>Operaciones</th>
 						</tr>
@@ -32,7 +34,7 @@
 							<td class="d-none" th:text="${localidad.propietario != null ? localidad.propietario.id : ' '}"></td>
                             <td th:text="${localidad.propietario != null ? localidad.propietario.nombre : 'Sin propietario'}"></td>
 							<td th:text="${localidad.propietario != null ? localidad.propietario.apellidos : 'Sin propietario'}"></td>
-                            <!--<td th:text="${localidad.sector.tipoLocalidad}"></td>-->
+                            <td th:text="${localidad.tipoLocalidad}"></td>
                             <td th:text="${localidad.fila}"></td>
                             <td th:text="${localidad.numLocalidad}"></td>
                             <td th:text="${#numbers.formatCurrency(localidad.sector.precio)}"></td>
