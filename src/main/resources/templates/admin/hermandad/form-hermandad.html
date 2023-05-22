@@ -13,7 +13,7 @@
             <div th:replace="~{fragmentos/menu::menu(activeMenu='hermandades')}"></div>
             <div class="tab-content col-8">
                 <form method="post" action="#" th:action="@{/admin/hermandad/nuevo/submit}" th:object="${hermandad}">
-					<h1><span th:text="${hermandad.id} ? 'Editar' : 'Nuevo'"></span> hermandad </h1>
+					<h1 class="titulos-admin mt-4"><span th:text="${hermandad.id} ? 'Editar' : 'Nueva'"></span> hermandad </h1>
 
 					<input type="hidden" th:field="*{id}" id="id" />
 					<div class="form-group">
@@ -23,12 +23,10 @@
 					</div>
 					<div class="mb-3">
                         <label for="dia">Día de salida:</label>
-                        <select id="dia" th:field="*{dia}">
+                        <select class="form-select" id="dia" th:field="*{dia}">
                             <option th:each="dia : ${dias}" th:value="${dia}" th:text="${dia.displayValue}"></option>
                         </select>
                     </div>
-
-					
 					<button type="submit" class="btn btn-primary">Enviar</button>
 				</form>
             </div>

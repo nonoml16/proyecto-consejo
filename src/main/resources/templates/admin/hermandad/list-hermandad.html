@@ -12,7 +12,8 @@
         <main class="row container align-content-between">
             <div th:replace="~{fragmentos/menu::menu(activeMenu='hermandades')}"></div>
             <div class="tab-content col-8">
-                <div class="pull-right">
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <h1 class="titulos-admin">Hermandades</h1>
 					<a href="form-hermandad.html" th:href="@{/admin/hermandad/nuevo}" class="btn btn-primary">Nueva hermandad</a>
 				</div>
                 <div class="container tab-pane active">
@@ -22,8 +23,9 @@
 							<th>ID</th>
 							<th>Nombre</th>
 							<th>Día</th>
-                            <!--<th>Nº de Hermanos</th>-->
-                            <th>Operaciones</th>
+                            <th>Nº de Hermanos</th>
+                            <th></th>
+                            <th></th>
 						</tr>
 					</thead>
                     <tbody>
@@ -31,7 +33,8 @@
 							<td th:text="${hermandad.id}"></td>
 							<td th:text="${hermandad.nombre}"></td>
                             <td th:text="${hermandad.dia.displayValue}"></td>
-                            <!--<td th:text="${hermandad.hermanos}"></td>-->
+                            <td th:text="${hermandad.getListaHermanos.size}"></td>
+                            <td><a href="#" th:href="@{/admin/hermandad/hermanos/{id}(id=${hermandad.id})}" class="btn btn-primary">Hermanos</a></td>
 							<td class="operaciones"><a href="#"
 								th:href="@{/admin/hermandad/editar/{id}(id=${hermandad.id})}"
 								class="btn btn-primary">Editar</a>
