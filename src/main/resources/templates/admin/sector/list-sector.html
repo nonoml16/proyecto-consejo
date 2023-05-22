@@ -12,11 +12,11 @@
         <main class="row container align-content-between">
             <div th:replace="~{fragmentos/menu::menu(activeMenu='sectores')}"></div>
             <div class="tab-content col-8">
-                <div class="pull-right">
-					<a href="form-sector.html" th:href="@{/admin/sector/nuevo}" class="btn btn-primary">Nuevo
-						sector</a>
-
+                <div class="d-flex justify-content-between align-items-center mt-4">
+					<h1 class="titulos-admin">Sectores</h1>
+                    <a href="form-sector.html" th:href="@{/admin/sector/nuevo}" class="btn btn-primary">Nuevo sector</a>
 				</div>
+                
                 <div class="container tab-pane active">
                     <table class="table">
                         <thead>
