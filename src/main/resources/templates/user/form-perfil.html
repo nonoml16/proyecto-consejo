@@ -30,11 +30,14 @@
 					</div>
                     <div class="form-group">
                         <label for="hermandad">Hermandad</label>
-                        <input class="form-control" th:field="*{hermandad.nombre}" type="text" id="hermandad" disabled>
+                        <select class="form-select" id="hermandad" th:field="*{hermandad.id}">
+                            <option th:each="hermandad : ${hermandades}" th:value="${hermandad.id}" th:text="${hermandad.nombre}"></option>
+                        </select>
+                        <!--<input class="form-control" th:field="*{hermandad.nombre}" type="text" id="hermandad" disabled>
                         <input class="form-control" th:field="*{hermandad.id}" type="text" id="hermandad" list="listaHermandades">
                         <datalist id="listaHermandades">
                             <option th:each="hermandad : ${hermandades}" th:value="${hermandad.id}" th:text="${hermandad.nombre}"></option>
-                        </datalist>
+                        </datalist>-->
                     </div>
                     <button class="btn btn-primary" type="submit">Guardar</button>
                 </form>
