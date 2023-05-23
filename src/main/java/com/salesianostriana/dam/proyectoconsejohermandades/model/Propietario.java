@@ -3,7 +3,6 @@ package com.salesianostriana.dam.proyectoconsejohermandades.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
@@ -37,8 +36,7 @@ public class Propietario extends Usuario{
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_propietario_hermandad"))
 	private Hermandad hermandad;
 	
-	@OneToMany(mappedBy = "propietario", fetch = FetchType.EAGER,
-			cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy = "propietario", fetch = FetchType.EAGER)
 	//@Builder.Default
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
