@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -98,6 +99,17 @@ public class LocalidadControlador {
 	    }
 
 	    return "redirect:/";
+	}
+	
+	@GetMapping("/liberar/{id}")
+	public String liberarLocalidad(@PathVariable("id") Long id, Model model) {
+		Optional<Localidad> localidadOpt = localidadService.findById(id);
+		if(localidadOpt.isPresent()) {
+			Localidad l = localidadOpt.get();
+			l.setPropietario(null);
+			localidadService.save(l);
+		}
+		return "redirect:/localidad/{id}";
 	}
 	
 }
