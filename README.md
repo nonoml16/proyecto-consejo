@@ -72,3 +72,4 @@ Se ha quedado pendiente de realizar las siguientes funciones del rol de administ
     <li>Enviar e-mails a los propietarios</li>
     <li>Generar facturas</li>
 </ul>
+</ul>
