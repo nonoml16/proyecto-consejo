@@ -22,6 +22,7 @@
                             <th>Fila</th>
                             <th>Número de localidad</th>
                             <th>Precio</th>
+                            <th>Operaciones</th>
 						</tr>
 					</thead>
                     <tbody>
@@ -33,6 +34,11 @@
                             <td th:text="${localidad.fila}"></td>
                             <td th:text="${localidad.numLocalidad}"></td>
                             <td th:text="${#numbers.formatCurrency(localidad.sector.precio)}"></td>
+                            <td>
+                                <a href="#" th:href="@{/localidad/liberar/{id}(id=${localidad.id})}" class="btn btn-danger">
+                                    Liberar
+                                </a>
+                            </td>
 						</tr>
                     </tbody>
                     </table>
