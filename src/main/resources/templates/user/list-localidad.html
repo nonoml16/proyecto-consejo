@@ -17,8 +17,6 @@
                         <thead>
 						<tr>
                             <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
                             <th>Sector</th>
                             <th>Tipo de localidad</th>
                             <th>Fila</th>
@@ -27,11 +25,9 @@
 						</tr>
 					</thead>
                     <tbody>
-                        <tr th:each="localidad : ${localidades}">
+                        <tr th:each="localidad : ${propietario.localidades}">
                             <td class="d-none" th:text="localidad.propietario.id"></td>
                             <td th:text="${localidad.id}"></td>
-                            <td th:text="${localidad.propietario.nombre}"></td>
-                            <td th:text="${localidad.propietario.apellidos}"></td>
                             <td th:text="${localidad.sector.localizacion}"></td>
 							<td th:text="${localidad.tipoLocalidad}"></td>
                             <td th:text="${localidad.fila}"></td>
