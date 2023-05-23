@@ -12,14 +12,15 @@
         <main class="row container align-content-between">
             <div th:replace="~{fragmentos/menu::menu(activeMenu='solicitarLocalidad')}"></div>
             <div class="tab-content col-8">
-                <div id="home" class="container tab-pane active"><br>
-                    <h3 class="titulos-admin mt-4">Seleccione una localidad</h3>
-                    
-                    <form action="#" th:action="@{/localidad/localidades/asignar}" method="post">
-                        <select name="localidadId" class="form-select">
-                            <option th:each="localidad : ${localidadesDisponibles}" th:value="${localidad.id}" th:text="${localidad.fila} + ', ' + ${localidad.numLocalidad}"></option>
+                <div id="home" class="container tab-pane active">
+                    <h3 class="titulos-admin mt-4">Seleccione un sector</h3>
+                    <form th:action="@{/localidad/sectores/seleccion}" action="#" method="post">
+                        <select class="form-select" name="sectorId">
+                            <option th:each="sector : ${sectores}" th:value="${sector.id}" th:text="${sector.localizacion}"></option>
                         </select>
-                        <button type="submit" class="btn btn-primary mt-3">Solicitar localidad</button>
+                        <button type="submit" class="btn btn-primary mt-3">
+                            Siguiente
+                        </button>
                     </form>
                 </div>   
             </div>
