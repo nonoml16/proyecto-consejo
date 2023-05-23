@@ -46,24 +46,6 @@ public class SecurityConfig {
 		
 	}
 	
-	/*@Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails user = User.builder()
-        		.username("admin")
-        		.password("{noop}admin")
-        		.roles("ADMIN")
-            .build();
-        return new InMemoryUserDetailsManager(user);
-    }*/
-	
-	/*
-	@Bean
-	public UserDetailsService userDetailsService() {
-		return new UserDetailsServiceImpl();
-	}*/
-	
-	
-	
 	@Bean 
 	public DaoAuthenticationProvider daoAuthenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();

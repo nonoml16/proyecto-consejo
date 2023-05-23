@@ -36,7 +36,7 @@
                             <td th:text="${localidad.numLocalidad}"></td>
                             <td th:text="${#numbers.formatCurrency(localidad.sector.precio)}"></td>
                             <td>
-                                <a href="#" th:href="@{/localidad/liberar/{id}(id=${localidad.id})}" class="btn btn-danger">
+                                <a href="#" th:href="@{/admin/propietario/localidad/liberar/{id}(id=${localidad.id})}" class="btn btn-danger">
                                     Liberar
                                 </a>
                             </td>

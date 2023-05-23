@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Localidad;
 import com.salesianostriana.dam.proyectoconsejohermandades.model.Propietario;
 import com.salesianostriana.dam.proyectoconsejohermandades.service.HermandadService;
+import com.salesianostriana.dam.proyectoconsejohermandades.service.LocalidadService;
 import com.salesianostriana.dam.proyectoconsejohermandades.service.PropietarioService;
 
 @Controller
@@ -27,6 +28,9 @@ public class PropietarioController {
 	
 	@Autowired
 	private HermandadService hermandadService;
+	
+	@Autowired
+	private LocalidadService localidadService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -61,6 +65,7 @@ public class PropietarioController {
 	public String editarPropietario(@PathVariable("id") Long id, Model model) {
 		
 		Optional<Propietario> propietario = propietarioService.findById(id);
+		model.addAttribute("hermandades", hermandadService.findAll());
 		if(propietario.isPresent())
 			model.addAttribute("propietario", propietario.get());
 		return "admin/propietario/form-propietario";
@@ -82,4 +87,22 @@ public class PropietarioController {
 		return "redirect:/admin/propietario/";
 	}
 	
+	@GetMapping("/localidades/{id}")
+	public String mostrarLocalidadesPropietario(@PathVariable("id") Long id, Model model) {
+		Optional<Propietario> propietarioOpt = propietarioService.findById(id);
+		if(propietarioOpt.isPresent())
+			model.addAttribute("propietario", propietarioOpt.get());
+		return "admin/propietario/list-localidad";
+	}
+	
+	@GetMapping("/localidad/liberar/{id}")
+	public String liberarLocalidad(@PathVariable("id") Long id, Model model) {
+		Optional<Localidad> localidadOpt = localidadService.findById(id);
+		if(localidadOpt.isPresent()) {
+			Localidad l = localidadOpt.get();
+			l.setPropietario(null);
+			localidadService.save(l);
+		}
+		return "redirect:/admin/propietario/";
+	}
 }

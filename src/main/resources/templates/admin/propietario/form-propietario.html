@@ -48,10 +48,13 @@
                     </div>
 					<div class="form-group mb-3">
                         <label for="hermandad">Hermandad</label>
-                        <input class="form-control" th:field="*{hermandad.id}" type="text" id="hermandad" list="listaHermandades">
+                        <select class="form-select" id="hermandad" th:field="*{hermandad.id}">
+                            <option th:each="hermandad : ${hermandades}" th:value="${hermandad.id}" th:text="${hermandad.nombre}"></option>
+                        </select>
+                        <!--<input class="form-control" th:field="*{hermandad.id}" type="text" id="hermandad" list="listaHermandades">
                         <datalist id="listaHermandades">
                             <option th:each="hermandad : ${hermandades}" th:value="${hermandad.id}" th:text="${hermandad.nombre}"></option>
-                        </datalist>
+                        </datalist>-->
                     </div>
 					<button type="submit" class="btn btn-primary">Enviar</button>
 				</form>

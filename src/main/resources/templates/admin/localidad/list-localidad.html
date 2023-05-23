@@ -39,7 +39,8 @@
                             <td th:text="${localidad.numLocalidad}"></td>
                             <td th:text="${#numbers.formatCurrency(localidad.sector.precio)}"></td>
                             <td><a href="#" th:href="@{/admin/localidad/editar/{id}(id=${localidad.id})}" class="btn btn-primary">
-                                <span th:text="${localidad.propietario != null ? 'Cambiar ' : 'Asignar '}" ></span>propietario</a></td>
+                                <span th:text="${localidad.propietario != null ? 'Cambiar ' : 'Asignar '}" ></span>propietario</a>
+                            </td>   
 						</tr>
                     </tbody>
                     </table>
