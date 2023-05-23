@@ -12,20 +12,24 @@ Para una experiencia más dinamica se han añadido 100 propietarios para que se 
 <br>
 <h3>Administrador (Consejero):</h3>
 <br>
+<br>
 Usuario: admin
+<br>
 Contraseña: admin
 <br>
 <br>
 <h3>Usuario:</h3>
 <br>
+<br>
 Usuario: user
+<br>
 Contraseña: 1234
 
 <h2>Diseño</h2>
 <br>
 Para que os hagais con una primera idea podeis echar un vistazo al diagrama de clases UML del proyecto.
 <br>
-![UML](./png/uml.png)
+![UML](/png/uml.png)
 <br>
 <br>
 <h2>Funcionalidades</h2>
