@@ -29,7 +29,8 @@ Contraseña: 1234
 <br>
 Para que os hagais con una primera idea podeis echar un vistazo al diagrama de clases UML del proyecto.
 <br>
-![UML](/png/uml.png)
+<br>
+<img href="png/uml.png" />
 <br>
 <br>
 <h2>Funcionalidades</h2>
