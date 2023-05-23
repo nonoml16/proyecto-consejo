@@ -2,8 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragmentos/head :: head" >
     <meta charset="UTF-8">
-    <title>Portada</title>
-    
+    <title>Editar perfil</title>
 </head>
 <body>
     <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
@@ -13,33 +12,28 @@
             <div th:replace="~{fragmentos/menu::menu(activeMenu='editarPerfil')}"></div>
             <div class="tab-content col-8">
                 <form method="post" action="#" th:action="@{/user/propietario/submit}" th:object="${propietario}">
-                    <h1>Editar perfil</h1>
+                    <h1 class="titulos-admin mt-4">Editar perfil</h1>
                     <input type="hidden" th:field="*{id}" id="id" />
                     <input type="hidden" th:field="*{username}" id="username" />
                     <input type="hidden" th:field="*{password}" id="password" />
                     <input type="hidden" th:field="*{dni}" id="dni" />
-                    <div class="form-group">
+                    <div class="form-group mt-3">
 						<label for="nombre">Nombre</label><input type="text"
 							class="form-control" id="nombre" placeholder="Nombre"
 							required="required" th:field="*{nombre}">
 					</div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
 						<label for="apellidos">Apellidos</label><input type="text"
 							class="form-control" id="apellidos" placeholder="Apellidos"
 							required="required" th:field="*{apellidos}">
 					</div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="hermandad">Hermandad</label>
                         <select class="form-select" id="hermandad" th:field="*{hermandad.id}">
                             <option th:each="hermandad : ${hermandades}" th:value="${hermandad.id}" th:text="${hermandad.nombre}"></option>
                         </select>
-                        <!--<input class="form-control" th:field="*{hermandad.nombre}" type="text" id="hermandad" disabled>
-                        <input class="form-control" th:field="*{hermandad.id}" type="text" id="hermandad" list="listaHermandades">
-                        <datalist id="listaHermandades">
-                            <option th:each="hermandad : ${hermandades}" th:value="${hermandad.id}" th:text="${hermandad.nombre}"></option>
-                        </datalist>-->
                     </div>
-                    <button class="btn btn-primary" type="submit">Guardar</button>
+                    <button class="btn btn-primary mt-3" type="submit">Guardar</button>
                 </form>
             </div>
         </main>

@@ -2,8 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragmentos/head :: head" >
     <meta charset="UTF-8">
-    <title>Portada</title>
-    
+    <title>Solicitar localidad</title>
 </head>
 <body>
     <form th:action="@{/logout}" method="POST" id="logoutForm"></form>
@@ -12,19 +11,14 @@
         <main class="row container align-content-between">
             <div th:replace="~{fragmentos/menu::menu(activeMenu='solicitarLocalidad')}"></div>
             <div class="tab-content col-8">
-                <div id="home" class="container tab-pane active"><br>
-                    <h3 class="titulos-admin mt-4">Seleccione una localidad</h3>
-                    
-                    <form action="#" th:action="@{/localidad/localidades/asignar}" method="post">
-                        <select name="localidadId" class="form-select">
-                            <option th:each="localidad : ${localidadesDisponibles}" th:value="${localidad.id}" th:text="${localidad.fila} + ', ' + ${localidad.numLocalidad}"></option>
-                        </select>
-                        <button type="submit" class="btn btn-primary mt-3">Solicitar localidad</button>
-                    </form>
-                </div>   
+                <form action="#" th:action="@{/localidad/localidades/asignar}" method="post">
+                    <h1 class="titulos-admin mt-4">Seleccione una localidad</h1>
+                    <select name="localidadId" class="form-select mt-3">
+                        <option th:each="localidad : ${localidadesDisponibles}" th:value="${localidad.id}" th:text="${localidad.fila} + ', ' + ${localidad.numLocalidad}"></option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mt-3">Solicitar localidad</button>
+                </form>
             </div>
-                    
-            
         </main>
     </div>
     <footer th:replace="~{fragmentos/pie::pie}"></footer>

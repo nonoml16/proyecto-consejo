@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragmentos/head :: head" >
     <meta charset="UTF-8">
-    <title>Portada</title>
+    <title>Propietario</title>
     
 </head>
 <body>
@@ -51,12 +51,8 @@
                         <select class="form-select" id="hermandad" th:field="*{hermandad.id}">
                             <option th:each="hermandad : ${hermandades}" th:value="${hermandad.id}" th:text="${hermandad.nombre}"></option>
                         </select>
-                        <!--<input class="form-control" th:field="*{hermandad.id}" type="text" id="hermandad" list="listaHermandades">
-                        <datalist id="listaHermandades">
-                            <option th:each="hermandad : ${hermandades}" th:value="${hermandad.id}" th:text="${hermandad.nombre}"></option>
-                        </datalist>-->
                     </div>
-					<button type="submit" class="btn btn-primary">Enviar</button>
+					<button type="submit" class="btn btn-primary">Guardar cambios</button>
 				</form>
             </div>
         </main>

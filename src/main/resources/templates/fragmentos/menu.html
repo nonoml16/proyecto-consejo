@@ -5,14 +5,13 @@
 </head>
 
 <body>
-    <div class="col-4" th:fragment="menu">
+    <div class="col-4 menu-lateral" th:fragment="menu">
         <p class="titulo mt-4">SERVICIOS DISPONIBLES</p>
         <ul class="nav flex-column nav-pills nav-justified" role="tablist">
             <li class="nav-item">
                 <a class="nav-link" th:classappend="${activeMenu == 'solicitarLocalidad'} ? 'active' : ''" href="user/select-sector.html" th:href="@{/localidad/sectores}">Solicitar localidad</a>
             </li>
             <li class="nav-item">
-                <!--<a class="nav-link" th:classappend="${activeMenu == 'localidades'} ? 'active' : ''" href="user/list-localidad.html" th:href="@{/localidad/}">Mis localidades</a>-->
                 <a class="nav-link" th:classappend="${activeMenu == 'localidades'} ? 'active' : ''" href="user/list-localidad.html" th:href="@{/localidad/{id}(id=${propietario.id})}">Mis localidades</a>
             </li>
             <li class="nav-item">

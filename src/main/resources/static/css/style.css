@@ -1,4 +1,3 @@
-/*PAGINA LOGIN*/
 .logo-consejo{
     color: #709085;
 }
@@ -7,6 +6,10 @@
     .formulario-login {
         height: 100%;
     }
+}
+
+.menu-lateral{
+    height: 100%;
 }
 
 .formulario-login form{
@@ -29,7 +32,7 @@
     background-position: right center;
     background-size: auto 100%;
 }
-/*PAGINA PRINCIPAL*/
+
 @font-face {
     font-family: 'centuryB';
     src: url('/font/GOTHICB.TTF') format('truetype');

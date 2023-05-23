@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragmentos/head :: head" >
     <meta charset="UTF-8">
-    <title>Portada</title>
+    <title>Solicitar localidad</title>
     
 </head>
 <body>
@@ -12,20 +12,16 @@
         <main class="row container align-content-between">
             <div th:replace="~{fragmentos/menu::menu(activeMenu='solicitarLocalidad')}"></div>
             <div class="tab-content col-8">
-                <div id="home" class="container tab-pane active">
-                    <h3 class="titulos-admin mt-4">Seleccione un sector</h3>
-                    <form th:action="@{/localidad/sectores/seleccion}" action="#" method="post">
-                        <select class="form-select" name="sectorId">
-                            <option th:each="sector : ${sectores}" th:value="${sector.id}" th:text="${sector.localizacion}"></option>
-                        </select>
-                        <button type="submit" class="btn btn-primary mt-3">
-                            Siguiente
-                        </button>
-                    </form>
-                </div>   
+                <form th:action="@{/localidad/sectores/seleccion}" action="#" method="post">
+                    <h1 class="titulos-admin mt-4">Seleccione un sector</h1>
+                    <select class="form-select mt-3" name="sectorId">
+                        <option th:each="sector : ${sectores}" th:value="${sector.id}" th:text="${sector.localizacion}"></option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mt-3">
+                        Siguiente
+                    </button>
+                </form>  
             </div>
-                    
-            
         </main>
     </div>
     <footer th:replace="~{fragmentos/pie::pie}"></footer>
