@@ -38,15 +38,72 @@
     src: url('/font/GOTHICB.TTF') format('truetype');
 }
 .usuario{
-font-family: centuryB;
-color: dimgray;
+    font-family: centuryB;
+    color: dimgray;
 }
 .titulo{
-font-family: centuryB;
-font-size: 14;
+    font-family: centuryB;
+    font-size: 14;
 }
 
 .titulos-admin{
     font-family: centuryB;
     font-size: 24;
-    }
+}
+
+.form-group-input{
+    position: relative;
+}
+
+.form-input-error{
+    display: none;
+    color: red;
+}
+
+.form-input-error-activo{
+    display: block;
+}
+
+.form-validacion-estado{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 100;
+    font-size: 18px;
+    opacity: 0;
+}
+
+.form-mensaje{
+    height: 40px;
+    line-height: 40px;
+    background-color: lightcoral;
+    padding: 0 15px;
+    border-radius: 0.375rem;
+    display: none;
+}
+
+.form-mensaje-activo{
+    display: block;
+}
+
+.form-mensaje p{
+    margin: 0;
+}
+
+.formulario-grupo-correcto .form-validacion-estado{
+    color: greenyellow;
+    opacity: 0;
+}
+
+.formulario-grupo-error .formulario-label{
+    color: red;
+}
+
+.formulario-grupo-error .form-validacion-estado{
+    color: red;
+    opacity: 1;
+}
+
+.formulario-grupo-error .formulario-input{
+    border: 3px solid red;
+}
